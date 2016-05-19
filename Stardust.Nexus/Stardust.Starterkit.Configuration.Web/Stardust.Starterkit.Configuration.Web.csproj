@@ -357,6 +357,7 @@
     <Compile Include="Controllers\MigrationController.cs" />
     <Compile Include="Controllers\ParametersController.cs" />
     <Compile Include="Controllers\ReaderKey.cs" />
+    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Models\PropertyRequest.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -540,6 +541,7 @@
     <Content Include="Views\User\AccessToken.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\ServiceHosts\Delete.cshtml" />
+    <Content Include="Views\Settings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

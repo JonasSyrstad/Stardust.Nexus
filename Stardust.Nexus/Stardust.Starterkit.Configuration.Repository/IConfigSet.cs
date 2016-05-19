@@ -6,6 +6,30 @@ using Stardust.Interstellar.ConfigurationReader;
 
 namespace Stardust.Starterkit.Configuration.Repository
 {
+    [Entity("Settings")]
+    public interface ISettings
+    {
+        string Id { get; }
+
+        string MasterEncryptionKey { get; set; }
+
+        [PropertyType("Relative")]
+        ICollection<ISiteEncryptions> SiteEncryptions { get; set; }
+    }
+
+    [Entity("EnSiteEncryptions")]
+    public interface ISiteEncryptions
+    {
+        string Id { get; }
+
+        string SiteEncryptionKey { get; set; }
+
+        IConfigSet Site { get; set; }
+
+        [InverseProperty("SiteEncryptions")]
+        ISettings Settings { get; set; }
+    }
+
     [Entity("ConfigSet")]
     public interface IConfigSet
     {
@@ -55,5 +79,8 @@ namespace Stardust.Starterkit.Configuration.Repository
         bool AllowAccessWithRootKey { get; set; }
 
         bool AllowAccessWithUserTokens { get; set; }
+
+        [InverseProperty("Site")]
+        ISiteEncryptions CryptoKey { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace Stardust.Starterkit.Configuration.Web
             Resolver.Bind<ICacheManagementService>().To<CacheManagementService>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<NullCacheManagementWrapper>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<AzureRedisFabricCacheManager>("Azure").SetTransientScope();
+            Configurator.Bind<ISettingsFacade>().To<SettingsFacade>().SetTransientScope();
         }
     }
 

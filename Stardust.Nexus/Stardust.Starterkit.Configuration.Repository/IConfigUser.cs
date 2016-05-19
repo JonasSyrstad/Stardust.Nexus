@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using BrightstarDB.EntityFramework;
 using JetBrains.Annotations;
 using Stardust.Particles;
@@ -40,12 +41,12 @@ namespace Stardust.Starterkit.Configuration.Repository
 
         public void SetAccessToken(string key)
         {
-            AccessToken = key.Encrypt(KeyHelper.SharedSecret);
+            AccessToken = key.Encrypt(KeyHelper.GetSecret(this));
         }
 
         public string GetAccessToken()
         {
-            return AccessToken.Decrypt(KeyHelper.SharedSecret);
+            return AccessToken.Decrypt(KeyHelper.GetSecret(this));
         }
     }
 }

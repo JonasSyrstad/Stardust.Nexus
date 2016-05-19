@@ -34,7 +34,7 @@ namespace Stardust.Starterkit.Configuration.Web.Controllers
             var subPar = reader.GetSubstitutionParameter(item);
             subPar.IsSecure = model.IsSecure;   
             subPar.ItemValue = model.ItemValue.IsInstance() ? model.ItemValue.TrimEnd() : null;
-            if (subPar.IsSecure && subPar.ItemValue.ContainsCharacters()) subPar.ItemValue = subPar.ItemValue.Encrypt(KeyHelper.SharedSecret);
+            if (subPar.IsSecure && subPar.ItemValue.ContainsCharacters()) subPar.ItemValue = subPar.ItemValue.Encrypt(KeyHelper.GetSecret(subPar.Environment.ConfigSet));
             if (!subPar.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             reader.UpdateSubstitutionParameter(subPar);
             return RedirectToAction("Details", "Environment", new { id = "edit", item = subPar.Environment.Id });

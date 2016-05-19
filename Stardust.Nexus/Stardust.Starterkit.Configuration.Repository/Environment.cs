@@ -44,12 +44,12 @@ namespace Stardust.Starterkit.Configuration.Repository
 
         public void SetReaderKey(string key)
         {
-            ReaderKey = key.Encrypt(KeyHelper.SharedSecret);
+            ReaderKey = key.Encrypt(KeyHelper.GetSecret(this.ConfigSet));
         }
 
         public string GetReaderKey()
         {
-            return ReaderKey.Decrypt(KeyHelper.SharedSecret);
+            return ReaderKey.Decrypt(KeyHelper.GetSecret(this.ConfigSet));
         }
 
         private string GetValue(string key)

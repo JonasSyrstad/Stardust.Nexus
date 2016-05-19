@@ -181,7 +181,7 @@ namespace Stardust.Starterkit.Configuration.Repository
                                         .SubstitutionParameters.SingleOrDefault(
                                             sp => string.Equals(sp.Name, string.Format("{0}_{1}", ServiceDescription.Name + param.Name), StringComparison.OrdinalIgnoreCase));
                         if(fromServiceHost.IsSecure)
-                            return string.Format(param.Value, fromServiceHost.Value.Decrypt(KeyHelper.SharedSecret));
+                            return string.Format(param.Value, fromServiceHost.Value.Decrypt(KeyHelper.GetSecret(this.ServiceDescription.ConfigSet)));
                         return string.Format(param.Value, fromServiceHost.Value);
                     }
                     catch (Exception)

@@ -4,7 +4,9 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Security;
 using BrightstarDB.Client;
+using Stardust.Core.Security;
 using Stardust.Nucleus;
 using Stardust.Particles;
 using Stardust.Starterkit.Configuration.Repository;
@@ -13,10 +15,39 @@ namespace Stardust.Starterkit.Configuration.Business
 {
     public class RepositoryFactory : IRepositoryFactory
     {
+        private static bool initialized;
 
         public ConfigurationContext GetRepository()
         {
-            return (ConfigurationContext)ContainerFactory.Current.Resolve(typeof(ConfigurationContext), Scope.Context, CreateRepository);
+            var repository= (ConfigurationContext)ContainerFactory.Current.Resolve(typeof(ConfigurationContext), Scope.Context, CreateRepository);
+            if (!initialized)
+            {
+                var settings = repository.Settingss.SingleOrDefault();
+                if (settings.IsNull())
+                {
+                    settings = repository.Settingss.Create();
+                    var master = UniqueIdGenerator.CreateNewId(26);
+                    var masterKey = master.GetByteArray();
+                    var protectedKey = Convert.ToBase64String(MachineKey.Protect(masterKey));
+                    settings.MasterEncryptionKey =protectedKey;
+                    foreach (var configSet in repository.ConfigSets)
+                    {
+                       var siteCrypt= repository.SiteEncryptionss.Create();
+                        siteCrypt.Site = configSet;
+                        siteCrypt.Settings = settings;
+                        var key = ConfigurationManagerHelper.GetValueOnKey("stardust.ConfigKey");
+                        if (key.IsNullOrWhiteSpace())
+                        {
+                            key = UniqueIdGenerator.CreateNewId(128);
+                        }
+                        siteCrypt.SiteEncryptionKey = key.Encrypt(new EncryptionKeyContainer(master));
+                    }
+                }
+                repository.SaveChanges();
+                initialized = true;
+            }
+            
+            return repository;
         }
 
         private static ConfigurationContext CreateRepository()

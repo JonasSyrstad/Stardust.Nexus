@@ -112,6 +112,7 @@
     <Compile Include="EnvironmentTasks.cs" />
     <Compile Include="IConfigSetTask.cs" />
     <Compile Include="IEnvironmentTasks.cs" />
+    <Compile Include="ISettingsFacade.cs" />
     <Compile Include="IUserFacade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryFactory.cs" />

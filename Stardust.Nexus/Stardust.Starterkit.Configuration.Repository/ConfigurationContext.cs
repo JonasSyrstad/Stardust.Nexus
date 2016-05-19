@@ -27,6 +27,10 @@ namespace Stardust.Starterkit.Configuration.Repository
     	static ConfigurationContext() 
     	{
     		var provider = new ReflectionMappingProvider();
+    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Stardust.Starterkit.Configuration.Repository.ISettings));
+    		EntityMappingStore.Instance.SetImplMapping<Stardust.Starterkit.Configuration.Repository.ISettings, Stardust.Starterkit.Configuration.Repository.Settings>();
+    		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Stardust.Starterkit.Configuration.Repository.ISiteEncryptions));
+    		EntityMappingStore.Instance.SetImplMapping<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions, Stardust.Starterkit.Configuration.Repository.SiteEncryptions>();
     		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Stardust.Starterkit.Configuration.Repository.IConfigSet));
     		EntityMappingStore.Instance.SetImplMapping<Stardust.Starterkit.Configuration.Repository.IConfigSet, Stardust.Starterkit.Configuration.Repository.ConfigSet>();
     		provider.AddMappingsForType(EntityMappingStore.Instance, typeof(Stardust.Starterkit.Configuration.Repository.IConfigUser));
@@ -114,6 +118,8 @@ namespace Stardust.Starterkit.Configuration.Repository
     	
     	private void InitializeContext() 
     	{
+    		Settingss = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.ISettings>(this);
+    		SiteEncryptionss = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions>(this);
     		ConfigSets = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.IConfigSet>(this);
     		ConfigUsers = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.IConfigUser>(this);
     		Endpoints = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.IEndpoint>(this);
@@ -125,6 +131,16 @@ namespace Stardust.Starterkit.Configuration.Repository
     		ServiceHostParameters = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.IServiceHostParameter>(this);
     		ServiceHostSettingss = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.IServiceHostSettings>(this);
     		SubstitutionParameters = 	new BrightstarEntitySet<Stardust.Starterkit.Configuration.Repository.ISubstitutionParameter>(this);
+    	}
+    	
+    	public IEntitySet<Stardust.Starterkit.Configuration.Repository.ISettings> Settingss
+    	{
+    		get; private set;
+    	}
+    	
+    	public IEntitySet<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions> SiteEncryptionss
+    	{
+    		get; private set;
     	}
     	
     	public IEntitySet<Stardust.Starterkit.Configuration.Repository.IConfigSet> ConfigSets
@@ -184,6 +200,12 @@ namespace Stardust.Starterkit.Configuration.Repository
     	
         public IEntitySet<T> EntitySet<T>() where T : class {
             var itemType = typeof(T);
+            if (typeof(T).Equals(typeof(Stardust.Starterkit.Configuration.Repository.ISettings))) {
+                return (IEntitySet<T>)this.Settingss;
+            }
+            if (typeof(T).Equals(typeof(Stardust.Starterkit.Configuration.Repository.ISiteEncryptions))) {
+                return (IEntitySet<T>)this.SiteEncryptionss;
+            }
             if (typeof(T).Equals(typeof(Stardust.Starterkit.Configuration.Repository.IConfigSet))) {
                 return (IEntitySet<T>)this.ConfigSets;
             }
@@ -222,6 +244,61 @@ namespace Stardust.Starterkit.Configuration.Repository
     
         } // end class ConfigurationContext
         
+}
+namespace Stardust.Starterkit.Configuration.Repository 
+{
+    
+    public partial class Settings : BrightstarEntityObject, ISettings 
+    {
+    	public Settings(BrightstarEntityContext context, BrightstarDB.Client.IDataObject dataObject) : base(context, dataObject) { }
+        public Settings(BrightstarEntityContext context) : base(context, typeof(Settings)) { }
+    	public Settings() : base() { }
+    	public System.String Id { get {return GetKey(); } set { SetKey(value); } }
+    	#region Implementation of Stardust.Starterkit.Configuration.Repository.ISettings
+    
+    	public System.String MasterEncryptionKey
+    	{
+            		get { return GetRelatedProperty<System.String>("MasterEncryptionKey"); }
+            		set { SetRelatedProperty("MasterEncryptionKey", value); }
+    	}
+    	public System.Collections.Generic.ICollection<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions> SiteEncryptions
+    	{
+    		get { return GetRelatedObjects<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions>("SiteEncryptions"); }
+    		set { if (value == null) throw new ArgumentNullException("value"); SetRelatedObjects("SiteEncryptions", value); }
+    								}
+    	#endregion
+    }
+}
+namespace Stardust.Starterkit.Configuration.Repository 
+{
+    
+    public partial class SiteEncryptions : BrightstarEntityObject, ISiteEncryptions 
+    {
+    	public SiteEncryptions(BrightstarEntityContext context, BrightstarDB.Client.IDataObject dataObject) : base(context, dataObject) { }
+        public SiteEncryptions(BrightstarEntityContext context) : base(context, typeof(SiteEncryptions)) { }
+    	public SiteEncryptions() : base() { }
+    	public System.String Id { get {return GetKey(); } set { SetKey(value); } }
+    	#region Implementation of Stardust.Starterkit.Configuration.Repository.ISiteEncryptions
+    
+    	public System.String SiteEncryptionKey
+    	{
+            		get { return GetRelatedProperty<System.String>("SiteEncryptionKey"); }
+            		set { SetRelatedProperty("SiteEncryptionKey", value); }
+    	}
+    
+    	public Stardust.Starterkit.Configuration.Repository.IConfigSet Site
+    	{
+            get { return GetRelatedObject<Stardust.Starterkit.Configuration.Repository.IConfigSet>("Site"); }
+            set { SetRelatedObject<Stardust.Starterkit.Configuration.Repository.IConfigSet>("Site", value); }
+    	}
+    
+    	public Stardust.Starterkit.Configuration.Repository.ISettings Settings
+    	{
+            get { return GetRelatedObject<Stardust.Starterkit.Configuration.Repository.ISettings>("Settings"); }
+            set { SetRelatedObject<Stardust.Starterkit.Configuration.Repository.ISettings>("Settings", value); }
+    	}
+    	#endregion
+    }
 }
 namespace Stardust.Starterkit.Configuration.Repository 
 {
@@ -319,6 +396,12 @@ namespace Stardust.Starterkit.Configuration.Repository
     	{
             		get { return GetRelatedProperty<System.Boolean>("AllowAccessWithUserTokens"); }
             		set { SetRelatedProperty("AllowAccessWithUserTokens", value); }
+    	}
+    
+    	public Stardust.Starterkit.Configuration.Repository.ISiteEncryptions CryptoKey
+    	{
+            get { return GetRelatedObject<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions>("CryptoKey"); }
+            set { SetRelatedObject<Stardust.Starterkit.Configuration.Repository.ISiteEncryptions>("CryptoKey", value); }
     	}
     	#endregion
     }

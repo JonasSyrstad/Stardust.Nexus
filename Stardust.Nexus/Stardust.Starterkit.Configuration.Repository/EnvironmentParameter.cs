@@ -51,10 +51,10 @@ namespace Stardust.Starterkit.Configuration.Repository
                 ItemValue = value;
                 return;
             }
-            var encrypted = value.Encrypt(KeyHelper.SharedSecret);
+            var encrypted = value.Encrypt(KeyHelper.GetSecret(Environment.ConfigSet));
             ItemValue = encrypted;
             BinaryValue = encrypted.GetByteArray();
-            if (ItemValue.Decrypt(KeyHelper.SharedSecret) != value) throw new StardustCoreException("Encryption validation failed!");
+            if (ItemValue.Decrypt(KeyHelper.GetSecret(Environment.ConfigSet)) != value) throw new StardustCoreException("Encryption validation failed!");
         }
 
 
