@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Key";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Key</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div >stardust.configKey</div>
+            <div class="col-md-10">
+                @ViewBag.Key
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Regenerate" class="btn btn-default" />
+        </div>
+    </div>
+}
+

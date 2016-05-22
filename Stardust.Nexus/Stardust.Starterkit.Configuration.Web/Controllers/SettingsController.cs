@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Stardust.Core.Security;
 using Stardust.Interstellar;
+using Stardust.Particles;
 using Stardust.Starterkit.Configuration.Business;
 using Stardust.Starterkit.Configuration.Repository;
 
@@ -29,6 +31,13 @@ namespace Stardust.Starterkit.Configuration.Web.Controllers
             reader.RegenerateMasterKey();
             var settings = reader.GetSettings();
             return View(settings);
+        }
+
+        public ActionResult Key(string id)
+        {
+            var keyHolder = reader.GetSettings().SiteEncryptions.SingleOrDefault(s => s.Site.Id == id);
+            ViewBag.Key = keyHolder.SiteEncryptionKey.Decrypt(KeyHelper.GetSecret(keyHolder.Site));
+            return View();
         }
 
         /// <summary>

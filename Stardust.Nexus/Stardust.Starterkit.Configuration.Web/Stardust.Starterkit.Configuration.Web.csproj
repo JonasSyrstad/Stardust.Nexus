@@ -542,6 +542,7 @@
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\ServiceHosts\Delete.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\Settings\Key.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
