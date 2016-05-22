@@ -31,7 +31,7 @@ namespace Stardust.Starterkit.Configuration.Repository
             return new EncryptionKeyContainer(GetSiteSecret(configSet));
         }
 
-        private static string GetSiteSecret(IConfigSet configSet)
+        public static string GetSiteSecret(IConfigSet configSet)
         {
             return configSet.CryptoKey.SiteEncryptionKey.Decrypt(new EncryptionKeyContainer(MachineKey.Unprotect(Convert.FromBase64String(configSet.CryptoKey.Settings.MasterEncryptionKey)).GetStringFromArray()));
         }

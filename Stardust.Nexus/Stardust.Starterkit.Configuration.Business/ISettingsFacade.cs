@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web.Security;
 using Stardust.Core.Security;
 using Stardust.Interstellar;
@@ -14,6 +15,8 @@ namespace Stardust.Starterkit.Configuration.Business
         ISettings GetSettings();
 
         void RegenerateMasterKey();
+
+        void RegenerateSiteKey(string siteId);
     }
 
     public class SettingsFacade : ISettingsFacade
@@ -42,41 +45,55 @@ namespace Stardust.Starterkit.Configuration.Business
             var oldKey = MachineKey.Unprotect(Convert.FromBase64String(settings.MasterEncryptionKey)).GetStringFromArray();
             foreach (var siteEncryptionse in settings.SiteEncryptions)
             {
-                var oldSiteEnc = siteEncryptionse.SiteEncryptionKey.Decrypt(new EncryptionKeyContainer(oldKey));
-                var newSiteEnc = UniqueIdGenerator.CreateNewId(26);
-                //if (siteEncryptionse.Site.ReaderKey.ContainsCharacters())
-                //{
-
-                //    try
-                //    {
-                //        var configKey = siteEncryptionse.Site.ReaderKey.Decrypt(new EncryptionKeyContainer(oldSiteEnc));
-                //        siteEncryptionse.Site.ReaderKey = configKey.Encrypt(new EncryptionKeyContainer(newSiteEnc));
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        ex.Log();
-                //    }
-                //}
-                ReencryptEnvironments(siteEncryptionse, oldKey, newKey, newSiteEnc, oldSiteEnc);
-                ReencryptServiceHostParameters(siteEncryptionse, oldSiteEnc, newSiteEnc);
-                foreach (var configUser in repositoryFactory.GetRepository().ConfigUsers)
-                {
-                    if (configUser.AccessToken.ContainsCharacters())
-                    {
-                        string oldTOken;
-                        try
-                        {
-                            oldTOken = configUser.AccessToken.Decrypt(new EncryptionKeyContainer(oldKey));
-                        }
-                        catch
-                        {
-                            oldTOken = configUser.AccessToken.Decrypt(KeyHelper.SharedSecret);
-                        }
-                        configUser.AccessToken = oldTOken.Encrypt(new EncryptionKeyContainer(newKey));
-                    }
-                }
+                ReencryptSite(siteEncryptionse, oldKey, newKey);
             }
             settings.MasterEncryptionKey = Convert.ToBase64String(MachineKey.Protect(newKey.GetByteArray()));
+            repositoryFactory.GetRepository().SaveChanges();
+        }
+
+        private void ReencryptSite(ISiteEncryptions siteEncryption, string oldKey, string newKey)
+        {
+            var oldSiteEnc = siteEncryption.SiteEncryptionKey.Decrypt(new EncryptionKeyContainer(oldKey));
+            var newSiteEnc = UniqueIdGenerator.CreateNewId(26);
+            //if (siteEncryptionse.Site.ReaderKey.ContainsCharacters())
+            //{
+
+            //    try
+            //    {
+            //        var configKey = siteEncryptionse.Site.ReaderKey.Decrypt(new EncryptionKeyContainer(oldSiteEnc));
+            //        siteEncryptionse.Site.ReaderKey = configKey.Encrypt(new EncryptionKeyContainer(newSiteEnc));
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        ex.Log();
+            //    }
+            //}
+            ReencryptEnvironments(siteEncryption, oldKey, newKey, newSiteEnc, oldSiteEnc);
+            ReencryptServiceHostParameters(siteEncryption, oldSiteEnc, newSiteEnc);
+            foreach (var configUser in repositoryFactory.GetRepository().ConfigUsers)
+            {
+                if (configUser.AccessToken.ContainsCharacters())
+                {
+                    string oldTOken;
+                    try
+                    {
+                        oldTOken = configUser.AccessToken.Decrypt(new EncryptionKeyContainer(oldKey));
+                    }
+                    catch
+                    {
+                        oldTOken = configUser.AccessToken.Decrypt(KeyHelper.SharedSecret);
+                    }
+                    configUser.AccessToken = oldTOken.Encrypt(new EncryptionKeyContainer(newKey));
+                }
+            }
+        }
+
+        public void RegenerateSiteKey(string siteId)
+        {
+            var settings=GetSettings();
+            var site = settings.SiteEncryptions.SingleOrDefault(s => s.Site.Id == siteId);
+            var key=MachineKey.Unprotect(Convert.FromBase64String(settings.MasterEncryptionKey)).GetStringFromArray();
+            ReencryptSite(site,key,key);
             repositoryFactory.GetRepository().SaveChanges();
         }
 

@@ -36,7 +36,19 @@ namespace Stardust.Starterkit.Configuration.Web.Controllers
         public ActionResult Key(string id)
         {
             var keyHolder = reader.GetSettings().SiteEncryptions.SingleOrDefault(s => s.Site.Id == id);
-            ViewBag.Key = keyHolder.SiteEncryptionKey.Decrypt(KeyHelper.GetSecret(keyHolder.Site));
+            ViewBag.Key = KeyHelper.GetSiteSecret(keyHolder.Site);
+            ViewBag.AppSettings = string.Format("<add key=\"stardust.ConfigKey\" value=\"{0}\" />", KeyHelper.GetSiteSecret(keyHolder.Site));
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Key(string id, object model)
+        {
+            reader.RegenerateSiteKey(id);
+            var keyHolder = reader.GetSettings().SiteEncryptions.SingleOrDefault(s => s.Site.Id == id);
+
+            ViewBag.Key = KeyHelper.GetSiteSecret(keyHolder.Site);
+            ViewBag.AppSettings = string.Format("<add key=\"stardust.ConfigKey\" value=\"{0}\" />", KeyHelper.GetSiteSecret(keyHolder.Site));
             return View();
         }
 

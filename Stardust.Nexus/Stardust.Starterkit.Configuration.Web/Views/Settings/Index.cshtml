@@ -24,8 +24,24 @@
             <input type="submit" value="Regenerate" class="btn btn-default" />
         </div>
     </div>
-}
-@foreach (var item in Model.SiteEncryptions)
-{
-    
-}
+}<table class="table table-responsive table-hover table-striped table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th>
+                ConfigSet
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SiteEncryptions)
+        {
+            <tr>
+                <td>@item.Site.Id</td>
+                <td>@Html.ActionLink("View key","Key",new {id=item.Site.Id})</td>
+            </tr>
+        }
+    </tbody>
+   
+
+</table>
