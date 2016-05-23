@@ -1,4 +1,4 @@
-﻿@model Stardust.Starterkit.Configuration.Repository.Settings
+﻿@model Stardust.Nexus.Repository.Settings
 @{
     ViewBag.Title = "Options";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,36 +12,46 @@
 
     <div class="form-horizontal">
         <div class="form-group">
-            @Html.LabelFor(model => model.MasterEncryptionKey, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MasterEncryptionKey, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MasterEncryptionKey, "", new { @class = "text-danger" })
-            </div>
+
         </div>
     </div>
+    <div class="col-md-offset-0 col-md-10 h4">
+        Sites:
+    </div>
+    <table class="table  table-hover table-striped table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Site
+                </th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.SiteEncryptions)
+            {
+                <tr>
+                    <td>@item.Site.Id</td>
+                    <td class="" style="vertical-align: top;width:360px;display:table;white-space: pre-wrap; white-space: -moz-pre-wrap;white-space: -pre-wrap;white-space: -o-pre-wrap; word-wrap: break-word;">
+                        @if (item.Site.Description != null)
+                    {
+                            @item.Site.Description.Trim() @*@Html.DisplayFor(i => item.Site.Description)*@
+                        }
+                    </td>
+                    <td>
+                        <div class="pull-right">@Html.ActionLink("View key", "Key", new { id = item.Site.Id })</div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Regenerate" class="btn btn-default" />
+            <input type="submit" value="Regenerate all" title="This will invalidate all stardust.configKey, all app components needs to be reconfigured" alt="This will invalidate all stardust.configKey, all app components needs to be reconfigured" class="btn btn-danger" />
         </div>
     </div>
-}<table class="table table-responsive table-hover table-striped table-condensed table-bordered">
-    <thead>
-        <tr>
-            <th>
-                ConfigSet
-            </th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.SiteEncryptions)
-        {
-            <tr>
-                <td>@item.Site.Id</td>
-                <td>@Html.ActionLink("View key","Key",new {id=item.Site.Id})</td>
-            </tr>
-        }
-    </tbody>
-   
-
-</table>
+    
+}

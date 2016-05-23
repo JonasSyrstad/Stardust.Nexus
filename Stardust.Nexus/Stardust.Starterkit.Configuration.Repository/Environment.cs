@@ -5,7 +5,7 @@ using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Particles;
 using Stardust.Wormhole;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     public partial class Environment
     {

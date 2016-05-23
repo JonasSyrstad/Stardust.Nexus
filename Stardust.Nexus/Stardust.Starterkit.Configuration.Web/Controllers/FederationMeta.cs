@@ -1,4 +1,4 @@
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     public class FederationMeta
     {

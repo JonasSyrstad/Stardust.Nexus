@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Management;
 using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Web.Models
+namespace Stardust.Nexus.Web.Models
 {
     public class SubstitutionParameterModel
     {

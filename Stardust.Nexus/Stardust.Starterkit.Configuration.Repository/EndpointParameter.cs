@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using Stardust.Particles;
 using Stardust.Nucleus;
+using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     public partial class EndpointParameter
     {

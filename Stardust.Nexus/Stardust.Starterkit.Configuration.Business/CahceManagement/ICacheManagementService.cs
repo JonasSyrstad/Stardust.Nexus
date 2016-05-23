@@ -1,7 +1,7 @@
 ﻿using System;
 using Stardust.Interstellar;
 
-namespace Stardust.Starterkit.Configuration.Business.CahceManagement
+namespace Stardust.Nexus.Business.CahceManagement
 {
     public interface ICacheManagementService : IRuntimeTask
     {

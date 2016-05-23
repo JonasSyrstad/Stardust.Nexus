@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [DisplayName("Access key")]
     public class ReaderKey 

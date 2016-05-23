@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using BrightstarDB.EntityFramework;
-using JetBrains.Annotations;
 using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     [Entity("Environment")]
     public interface IEnvironment

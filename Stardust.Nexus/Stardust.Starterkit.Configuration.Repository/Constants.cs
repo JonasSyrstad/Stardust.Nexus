@@ -1,4 +1,4 @@
-﻿namespace Stardust.Starterkit.Configuration.Repository
+﻿namespace Stardust.Nexus.Repository
 {
    public sealed class Constants
    {

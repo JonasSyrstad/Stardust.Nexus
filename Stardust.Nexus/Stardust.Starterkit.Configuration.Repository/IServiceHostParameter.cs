@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using BrightstarDB.EntityFramework;
 using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     [Entity("ServiceHostParameter")]
     public interface IServiceHostParameter

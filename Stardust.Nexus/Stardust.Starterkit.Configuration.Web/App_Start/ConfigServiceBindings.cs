@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Diagnostics;
 using Keen.Core;
-using Stardust.Core;
 using Stardust.Interstellar;
 using Stardust.Interstellar.Endpoints;
 using Stardust.Interstellar.Utilities;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Business.CahceManagement;
+using Stardust.Nexus.Repository;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Business.CahceManagement;
-using Stardust.Starterkit.Configuration.Repository;
 using Environment = System.Environment;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
     public class ConfigServiceBindings : Blueprint<KeenLogger>
     {

@@ -5,13 +5,13 @@ using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Stardust.Interstellar;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
+using Stardust.Nexus.Web.Models;
 using Stardust.Particles;
 using Stardust.Particles.Xml;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
-using Stardust.Starterkit.Configuration.Web.Models;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [Authorize]
     public class RegistrationController : Controller

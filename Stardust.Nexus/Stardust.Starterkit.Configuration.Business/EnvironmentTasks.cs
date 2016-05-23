@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using Stardust.Core.Security;
+using Stardust.Nexus.Business.CahceManagement;
+using Stardust.Nexus.Repository;
 using Stardust.Nucleus;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business.CahceManagement;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business
+namespace Stardust.Nexus.Business
 {
     public class EnvironmentTasks : ConfigurationTaskBase, IEnvironmentTasks
     {

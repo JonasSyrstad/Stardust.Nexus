@@ -1,4 +1,4 @@
-namespace Stardust.Starterkit.Configuration.Web.Models
+namespace Stardust.Nexus.Web.Models
 {
     public class PropertyRequest
     {

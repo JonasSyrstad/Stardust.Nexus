@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Web.Mvc;
 using Stardust.Interstellar;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
+using Stardust.Nexus.Web.Models;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
-using Stardust.Starterkit.Configuration.Web.Models;
 using Stardust.Wormhole;
-using Environment = Stardust.Starterkit.Configuration.Repository.Environment;
+using Environment = Stardust.Nexus.Repository.Environment;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [Authorize]
     public class EnvironmentController : BaseController

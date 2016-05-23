@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Web.Security;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
 
-namespace Stardust.Starterkit.Configuration.Web.Providers
+namespace Stardust.Nexus.Web.Providers
 {
 
     static class UserExt

@@ -1,8 +1,8 @@
 ﻿using Stardust.Interstellar;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business.CahceManagement
+namespace Stardust.Nexus.Business.CahceManagement
 {
     public class NullCacheManagementWrapper : AbstractRuntimeTask, ICacheManagementWrapper
     {

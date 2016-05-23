@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Repository;
 
-namespace Stardust.Starterkit.Configuration.Web.Models
+namespace Stardust.Nexus.Web.Models
 {
     public class AdministratorsModel
     {

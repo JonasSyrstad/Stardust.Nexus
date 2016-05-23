@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Stardust.Particles;
 
-
-namespace Stardust.Starterkit.Configuration.Web.Notification
+namespace Stardust.Nexus.Web.Notification
 {
     [HubName("configSetHub")]
     public class ConfigSetHub : Hub

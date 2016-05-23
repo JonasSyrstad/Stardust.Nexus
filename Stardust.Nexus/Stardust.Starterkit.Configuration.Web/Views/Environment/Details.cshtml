@@ -1,8 +1,8 @@
-﻿@using Stardust.Starterkit.Configuration.Web.Models
+﻿@using Stardust.Nexus.Web.Models
 @using Stardust.Wormhole
 @using System.Linq
 @using System.Web.Mvc.Html
-@model Stardust.Starterkit.Configuration.Repository.Environment
+@model Stardust.Nexus.Repository.Environment
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -42,6 +42,7 @@
         </div>
     </div>
 }
+
 @Html.ActionLink("Cache settings", "Caching", "Environment", new { id = "edit", item = Model.Id }, null) |
 @Html.ActionLink("Federation settings", "FederationSettings", "Environment", new { id = Model.Id }, null) |
 @Html.ActionLink("Proxy access key", "ReaderKey", "Environment", new { id = Model.Id }, null) |

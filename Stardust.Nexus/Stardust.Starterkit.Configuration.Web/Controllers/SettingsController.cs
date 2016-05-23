@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Stardust.Core.Security;
 using Stardust.Interstellar;
-using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "SystemAdmin")]
     public class SettingsController : BaseController
     {
         private readonly ISettingsFacade reader;

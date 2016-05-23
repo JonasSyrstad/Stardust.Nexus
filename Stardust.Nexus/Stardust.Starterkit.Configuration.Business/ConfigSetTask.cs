@@ -6,13 +6,13 @@ using System.Linq;
 using System.Reflection;
 using Stardust.Core.Security;
 using Stardust.Interstellar.ConfigurationReader;
+using Stardust.Nexus.Business.CahceManagement;
+using Stardust.Nexus.Repository;
 using Stardust.Nucleus.Extensions;
 using Stardust.Particles;
 using Stardust.Particles.Collection;
-using Stardust.Starterkit.Configuration.Business.CahceManagement;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business
+namespace Stardust.Nexus.Business
 {
     public class ConfigSetTask : IConfigSetTask
     {

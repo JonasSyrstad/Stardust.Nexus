@@ -104,13 +104,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Stardust.Starterkit.Configuration.Business\Stardust.Starterkit.Configuration.Business.csproj">
+    <ProjectReference Include="..\Stardust.Starterkit.Configuration.Business\Stardust.Nexus.Business.csproj">
       <Project>{a0bae4d7-763c-44bf-82fd-31db0dfdd881}</Project>
-      <Name>Stardust.Starterkit.Configuration.Business</Name>
+      <Name>Stardust.Nexus.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Stardust.Starterkit.Configuration.Repository\Stardust.Starterkit.Configuration.Repository.csproj">
+    <ProjectReference Include="..\Stardust.Starterkit.Configuration.Repository\Stardust.Nexus.Repository.csproj">
       <Project>{4bf95275-c07a-4c62-af87-185eaa89bf50}</Project>
-      <Name>Stardust.Starterkit.Configuration.Repository</Name>
+      <Name>Stardust.Nexus.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using BrightstarDB.EntityFramework;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     [Entity("SubstitutionParameter")]
     public interface ISubstitutionParameter

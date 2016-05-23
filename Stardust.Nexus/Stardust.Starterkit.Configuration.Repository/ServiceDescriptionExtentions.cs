@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     public static class ServiceDescriptionExtentions
     {

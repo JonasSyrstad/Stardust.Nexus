@@ -1,14 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
+﻿using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Starterkit.Configuration.Web.Models;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [Authorize]
     public class AccountController : BaseController

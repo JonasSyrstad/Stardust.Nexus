@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     public partial class SubstitutionParameter
     {

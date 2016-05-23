@@ -1,5 +1,5 @@
-﻿@using Stardust.Starterkit.Configuration.Business
-@model Stardust.Starterkit.Configuration.Repository.Endpoint
+﻿@using Stardust.Nexus.Business
+@model Stardust.Nexus.Repository.Endpoint
 
 @{
     ViewBag.Title = "Create";
@@ -34,7 +34,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back", "Details", "Service", new { id = "edit", item = ViewBag.ServiceId }, null) 
+    @Html.ActionLink("Back", "Details", "Service", new { id = "edit", item = ViewBag.ServiceId }, null)
 </div>
 
 @section Scripts {

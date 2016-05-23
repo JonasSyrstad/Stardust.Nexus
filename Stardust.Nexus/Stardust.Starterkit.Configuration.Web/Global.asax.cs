@@ -1,25 +1,16 @@
-﻿using System.Collections.Generic;
-using System.IdentityModel.Claims;
+﻿using System.IdentityModel.Claims;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using Stardust.Core.Service.Web;
-using Stardust.Nucleus;
-using Stardust.Particles;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Client;
-using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.AspNet.SignalR.Infrastructure;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Business.CahceManagement;
-using Stardust.Starterkit.Configuration.Web.Notification;
-using Utilities = Stardust.Interstellar.Utilities.Utilities;
+using Stardust.Core.Service.Web;
+using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
 
     public class MvcApplication : HttpApplication

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Stardust.Starterkit.Configuration.Repository
+﻿namespace Stardust.Nexus.Repository
 {
     public enum AdministratorTypes
     {

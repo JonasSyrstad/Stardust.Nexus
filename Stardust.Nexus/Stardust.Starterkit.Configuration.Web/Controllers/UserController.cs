@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Interstellar.Utilities;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
-using Stardust.Starterkit.Configuration.Web.Models;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
+using Stardust.Nexus.Web.Models;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     
     public class UserController : BaseController

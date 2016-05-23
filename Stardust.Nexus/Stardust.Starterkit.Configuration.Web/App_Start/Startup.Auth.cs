@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-using Owin;
-using Stardust.Starterkit.Configuration.Web.Models;
-using System;
-using GbSamples.OwinWinAuth;
-using Microsoft.Owin.Security;
+﻿using Owin;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
     public partial class Startup
     {

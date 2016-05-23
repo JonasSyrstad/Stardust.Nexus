@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
     public class RouteConfig
     {

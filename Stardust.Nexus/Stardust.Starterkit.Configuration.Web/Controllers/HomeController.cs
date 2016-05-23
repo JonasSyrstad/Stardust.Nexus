@@ -1,9 +1,9 @@
-﻿using System.Web.Security;
-using Stardust.Starterkit.Configuration.Business;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using System.Web.Security;
 using Stardust.Interstellar;
+using Stardust.Nexus.Business;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [Authorize]
     public class HomeController : BaseController

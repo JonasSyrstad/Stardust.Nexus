@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using Stardust.Interstellar.ConfigurationReader;
+using Stardust.Nexus.Business;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
 
 
@@ -82,49 +79,5 @@ namespace Stardust.Starterkit.Configuration.Web.Controllers
         }
 
 
-    }
-
-    internal class ConfigCacheItem
-    {
-        public string ETag { get; set; }
-
-        public ConfigurationSet ConfigSet { get; set; }
-    }
-
-    [Authorize]
-    public class UserTokenController : ApiController
-    {
-        private IConfigSetTask reader;
-
-        private IUserFacade userFacade;
-
-        public UserTokenController(IConfigSetTask reader, IUserFacade userFacade)
-        {
-            this.reader = reader;
-            this.userFacade = userFacade;
-        }
-        [HttpGet]
-        public HttpResponseMessage GetUser(string id)
-        {
-            try
-            {
-                var user = userFacade.GetUser(id);
-                return Request.CreateResponse(user != null ? new
-                                                                 {
-                                                                     user.NameId,
-                                                                     user.AccessToken,
-                                                                     ConfigSets = user.AdministratorType == AdministratorTypes.SystemAdmin ? reader.GetAllConfigSetNames() : user.ConfigSet.Select(c => c.Id).ToList()
-                                                                 } : CreateDeletedResponse(id));
-            }
-            catch (NullReferenceException)
-            {
-                return Request.CreateResponse(CreateDeletedResponse(id));
-            }
-        }
-
-        private static object CreateDeletedResponse(string id)
-        {
-            return new { NameId = id, AccessToken = "deleted", ConfigSets = new List<string>() };
-        }
     }
 }

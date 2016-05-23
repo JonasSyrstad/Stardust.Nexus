@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
     public static class WebApiConfig
     {

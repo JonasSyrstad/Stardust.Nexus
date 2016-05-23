@@ -1,12 +1,12 @@
 ﻿using System;
-using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Business;
 using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Starterkit.Configuration.Repository;
-using Stardust.Starterkit.Configuration.Web.Models;
+using Stardust.Nexus.Business;
+using Stardust.Nexus.Repository;
+using Stardust.Nexus.Web.Models;
+using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Web.Controllers
+namespace Stardust.Nexus.Web.Controllers
 {
     [Authorize]
     public class ServiceHostParameterController : BaseController

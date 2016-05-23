@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using BrightstarDB.EntityFramework;
-using JetBrains.Annotations;
 using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     [Entity("ConfigUser")]
     public interface IConfigUser

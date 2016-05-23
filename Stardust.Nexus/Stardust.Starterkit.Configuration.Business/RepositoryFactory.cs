@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Configuration;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Security;
-using BrightstarDB.Client;
 using Stardust.Core.Security;
+using Stardust.Nexus.Repository;
 using Stardust.Nucleus;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business
+namespace Stardust.Nexus.Business
 {
     public class RepositoryFactory : IRepositoryFactory
     {

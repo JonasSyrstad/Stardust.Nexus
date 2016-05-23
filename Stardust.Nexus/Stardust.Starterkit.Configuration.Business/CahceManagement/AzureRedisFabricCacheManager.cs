@@ -5,10 +5,10 @@ using Newtonsoft.Json;
 using StackExchange.Redis;
 using Stardust.Interstellar;
 using Stardust.Interstellar.ConfigurationReader;
+using Stardust.Nexus.Repository;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business.CahceManagement
+namespace Stardust.Nexus.Business.CahceManagement
 {
     public class AzureRedisFabricCacheManager : AbstractRuntimeTask, ICacheManagementWrapper
     {

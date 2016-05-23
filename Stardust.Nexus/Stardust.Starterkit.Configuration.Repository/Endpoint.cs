@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Xml;
 using Stardust.Particles;
 
-namespace Stardust.Starterkit.Configuration.Repository
+namespace Stardust.Nexus.Repository
 {
     public partial class Endpoint
     {

@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Security.Claims;
 using Stardust.Interstellar.Endpoints;
+using Stardust.Nexus.Repository;
 using Stardust.Nucleus;
 using Stardust.Particles;
-using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business
+namespace Stardust.Nexus.Business
 {
     public static class ConfigReaderFactory
     {

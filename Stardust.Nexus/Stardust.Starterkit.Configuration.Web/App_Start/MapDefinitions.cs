@@ -1,7 +1,7 @@
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Repository;
 using Stardust.Wormhole;
 
-namespace Stardust.Starterkit.Configuration.Web
+namespace Stardust.Nexus.Web
 {
     public class MapDefinitions : IMappingDefinition
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Nexus.Repository;
 
-namespace Stardust.Starterkit.Configuration.Business
+namespace Stardust.Nexus.Business
 {
     public interface IConfigSetTask : IDisposable
     {
