@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Web.Security;
 using Stardust.Core.Security;
 using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Nexus.Business.CahceManagement;
@@ -79,6 +80,7 @@ namespace Stardust.Nexus.Business
             configSet.Created = DateTime.UtcNow;
             configSet.System = systemName;
             configSet.LastUpdate = DateTime.UtcNow;
+            CreateEncryptionKey(configSet);
             Repository.SaveChanges();
             if (parent.IsInstance())
             {
@@ -106,6 +108,16 @@ namespace Stardust.Nexus.Business
             }
 
             return true;
+        }
+
+        private void CreateEncryptionKey(IConfigSet configSet)
+        {
+            var encrytptionKey = Repository.SiteEncryptionss.Create();
+            encrytptionKey.Site = configSet;
+            var key = UniqueIdGenerator.CreateNewId(26);
+            var masterKey = MachineKey.Unprotect(Convert.FromBase64String(Repository.Settingss.Single().MasterEncryptionKey)).GetStringFromArray();
+            encrytptionKey.SiteEncryptionKey = key.Encrypt(new EncryptionKeyContainer(masterKey));
+            Repository.Settingss.Single().SiteEncryptions.Add(encrytptionKey);
         }
 
         public IEndpoint CreateEndpoint(IServiceDescription service, string endpointname, List<string> parameters = null)
