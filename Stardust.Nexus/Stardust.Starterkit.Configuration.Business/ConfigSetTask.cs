@@ -115,7 +115,8 @@ namespace Stardust.Nexus.Business
             var encrytptionKey = Repository.SiteEncryptionss.Create();
             encrytptionKey.Site = configSet;
             var key = UniqueIdGenerator.CreateNewId(26);
-            var masterKey = MachineKey.Unprotect(Convert.FromBase64String(Repository.Settingss.Single().MasterEncryptionKey)).GetStringFromArray();
+            var settings = Repository.Settingss.Single();
+            var masterKey = MachineKey.Unprotect(Convert.FromBase64String(settings.MasterEncryptionKey)).GetStringFromArray();
             encrytptionKey.SiteEncryptionKey = key.Encrypt(new EncryptionKeyContainer(masterKey));
             Repository.Settingss.Single().SiteEncryptions.Add(encrytptionKey);
         }
