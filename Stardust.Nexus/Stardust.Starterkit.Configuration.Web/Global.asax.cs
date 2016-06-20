@@ -8,6 +8,8 @@ using System.Web.Routing;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Client;
 using Stardust.Core.Service.Web;
+using Stardust.Interstellar.Rest.Service;
+using Stardust.Nexus.Management.Client;
 using Stardust.Particles;
 
 namespace Stardust.Nexus.Web
@@ -24,6 +26,9 @@ namespace Stardust.Nexus.Web
         protected void Application_Start()
         {
             this.LoadBindingConfiguration().LoadMapDefinitions<MapDefinitions>();
+            ServiceFactory.CreateServiceImplementation<IRegistration>();
+            ServiceFactory.CreateServiceImplementation<IConfiguration>();
+            ServiceFactory.FinalizeRegistration();
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);

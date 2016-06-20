@@ -2,10 +2,10 @@
 using System.Web.Security;
 using Stardust.Nexus.Business;
 using Stardust.Nexus.Repository;
+using ConfigurationSettings = Stardust.Nexus.Repository.ConfigurationSettings;
 
 namespace Stardust.Nexus.Web.Providers
 {
-
     static class UserExt
     {
         internal static string GetUsername(this string userName)

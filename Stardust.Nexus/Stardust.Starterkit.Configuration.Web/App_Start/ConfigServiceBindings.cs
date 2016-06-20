@@ -6,8 +6,11 @@ using Stardust.Interstellar.Endpoints;
 using Stardust.Interstellar.Utilities;
 using Stardust.Nexus.Business;
 using Stardust.Nexus.Business.CahceManagement;
+using Stardust.Nexus.Management.Client;
 using Stardust.Nexus.Repository;
+using Stardust.Nexus.Web.Providers;
 using Stardust.Particles;
+using ConfigurationSettings = Stardust.Nexus.Management.Client.ConfigurationSettings;
 using Environment = System.Environment;
 
 namespace Stardust.Nexus.Web
@@ -24,9 +27,12 @@ namespace Stardust.Nexus.Web
             Resolver.Bind<ICacheManagementService>().To<CacheManagementService>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<NullCacheManagementWrapper>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<AzureRedisFabricCacheManager>("Azure").SetTransientScope();
+            Configurator.Bind<IRegistration>().To<RegistrationServiceImp>().SetTransientScope();
             Configurator.Bind<ISettingsFacade>().To<SettingsFacade>().SetTransientScope();
         }
     }
+
+    
 
     public class KeenLogger : ILogging
     {
