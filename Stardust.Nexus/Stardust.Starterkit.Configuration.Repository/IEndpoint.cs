@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using BrightstarDB.EntityFramework;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using BrightstarDB.EntityFramework;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Entity("Endpoint")]
     public interface IEndpoint

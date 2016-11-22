@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Stardust.Core.Security;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Repository;
 using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business.CahceManagement;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Business
+namespace Stardust.Starterkit.Configuration.Business
 {
     public abstract class ConfigurationTaskBase
     {

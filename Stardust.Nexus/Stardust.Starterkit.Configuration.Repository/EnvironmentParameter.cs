@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class EnvironmentParameter
     {
@@ -40,7 +40,8 @@ namespace Stardust.Nexus.Repository
                 Name = Name,
                 Value = Value,
                 BinaryValue = binary,
-                ChildParameters = new List<ConfigParameter>()
+                ChildParameters = new List<ConfigParameter>(),
+                Description = Description
             };
         }
 
@@ -51,10 +52,10 @@ namespace Stardust.Nexus.Repository
                 ItemValue = value;
                 return;
             }
-            var encrypted = value.Encrypt(KeyHelper.GetSecret(Environment.ConfigSet));
+            var encrypted = value.Encrypt(KeyHelper.SharedSecret);
             ItemValue = encrypted;
             BinaryValue = encrypted.GetByteArray();
-            if (ItemValue.Decrypt(KeyHelper.GetSecret(Environment.ConfigSet)) != value) throw new StardustCoreException("Encryption validation failed!");
+            if (ItemValue.Decrypt(KeyHelper.SharedSecret) != value) throw new StardustCoreException("Encryption validation failed!");
         }
 
 

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nucleus;
 using Stardust.Particles;
+using Stardust.Nucleus;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class ServiceHostParameter
     {
@@ -44,7 +44,8 @@ namespace Stardust.Nexus.Repository
                 
                 Value = !IsEnvironmental?Value:GetEnvironmentValue(this,environment),
                 BinaryValue = binary,
-                ChildParameters = new List<ConfigParameter>()
+                ChildParameters = new List<ConfigParameter>(),
+                Description = Description
             };
         }
 
@@ -62,10 +63,10 @@ namespace Stardust.Nexus.Repository
                 ItemValue = value;
                 return;
             }
-            var encrypted = value.Encrypt(KeyHelper.GetSecret(this.ServiceHost.ConfigSet)); 
+            var encrypted = value.Encrypt(KeyHelper.SharedSecret); 
             ItemValue = encrypted;
             BinaryValue = encrypted.GetByteArray();
-            if (ItemValue.Decrypt(KeyHelper.GetSecret(this.ServiceHost.ConfigSet)) != value) throw new StardustCoreException("Encryption validation failed!");
+            if (ItemValue.Decrypt(KeyHelper.SharedSecret) != value) throw new StardustCoreException("Encryption validation failed!");
         }
 
 

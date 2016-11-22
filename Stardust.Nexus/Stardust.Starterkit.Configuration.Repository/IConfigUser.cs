@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using BrightstarDB.EntityFramework;
+using JetBrains.Annotations;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Entity("ConfigUser")]
     public interface IConfigUser
@@ -39,12 +40,12 @@ namespace Stardust.Nexus.Repository
 
         public void SetAccessToken(string key)
         {
-            AccessToken = key.Encrypt(KeyHelper.GetSecret(this));
+            AccessToken = key.Encrypt(KeyHelper.SharedSecret);
         }
 
         public string GetAccessToken()
         {
-            return AccessToken.Decrypt(KeyHelper.GetSecret(this));
+            return AccessToken.Decrypt(KeyHelper.SharedSecret);
         }
     }
 }

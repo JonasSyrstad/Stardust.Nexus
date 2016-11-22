@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Stardust.Clusters;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy
+namespace Stardust.Starterkit.Proxy.App_Start
 {
     public class JoinGroupsPipeline : HubPipelineModule
     {

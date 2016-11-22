@@ -1,4 +1,4 @@
-﻿@model Stardust.Nexus.Repository.IEndpoint
+﻿@model Stardust.Starterkit.Configuration.Repository.IEndpoint
 
 @{
     ViewBag.Title = "Details";
@@ -31,5 +31,5 @@
 </div>
 @Html.Partial("Partials/ParameterList",Model.Parameters)
 <p>
-    @Html.ActionLink("Back", "Details", "Service", new { id = "edit", item = ViewBag.ServiceId }, null)
+    <i class="glyphicon glyphicon-backward"></i> @Html.ActionLink("Back", "Details", "Service", new { id = "edit", item = ViewBag.ServiceId }, null)
 </p>

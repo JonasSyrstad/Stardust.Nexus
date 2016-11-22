@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace Stardust.Nexus.Web.Models
+namespace Stardust.Starterkit.Configuration.Web.Models
 {
     public class IndexViewModel
     {

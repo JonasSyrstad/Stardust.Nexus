@@ -1,15 +1,21 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy.Controllers.api
+namespace Stardust.Starterkit.Proxy.Controllers.api
 {
+    public interface IConfigReaderController
+    {
+        HttpResponseMessage Get(string id, string env = null, string updKey = null);
+    }
+
     public class ConfigReaderController : ConfigReaderControllerBase, IConfigReaderController
     {
 

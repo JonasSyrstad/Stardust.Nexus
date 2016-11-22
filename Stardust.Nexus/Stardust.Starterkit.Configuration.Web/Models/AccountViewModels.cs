@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Stardust.Nexus.Web.Models
+namespace Stardust.Starterkit.Configuration.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

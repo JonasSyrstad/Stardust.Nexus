@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Serializable]
     public class ConfigurationSettings

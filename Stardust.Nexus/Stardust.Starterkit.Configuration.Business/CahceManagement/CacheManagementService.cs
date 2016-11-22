@@ -3,9 +3,9 @@ using System.Linq;
 using Stardust.Interstellar;
 using Stardust.Interstellar.Legacy;
 using Stardust.Interstellar.Trace;
-using Stardust.Nexus.Repository;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Business.CahceManagement
+namespace Stardust.Starterkit.Configuration.Business.CahceManagement
 {
     public class CacheManagementService : AbstractRuntimeTask, ICacheManagementService
     {

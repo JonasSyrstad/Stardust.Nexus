@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Stardust.Nexus.Web
+namespace Stardust.Starterkit.Configuration.Web
 {
     public class FilterConfig
     {

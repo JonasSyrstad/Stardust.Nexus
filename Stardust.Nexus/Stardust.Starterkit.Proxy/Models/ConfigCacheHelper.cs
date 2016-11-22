@@ -13,7 +13,7 @@ using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Interstellar.Utilities;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Proxy.Models
+namespace Stardust.Starterkit.Proxy.Models
 {
     public static class ConfigCacheHelper
     {

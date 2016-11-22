@@ -5,15 +5,15 @@ using System.Net;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
-using Stardust.Nexus.Web.Models;
 using Stardust.Particles;
 using Stardust.Particles.Xml;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Starterkit.Configuration.Web.Models;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class RegistrationController : Controller
     {
 
@@ -177,6 +177,8 @@ namespace Stardust.Nexus.Web.Controllers
         [HttpPost]
         public ActionResult SetProperty(string id, string properyMessage)
         {
+            Logging.DebugMessage("AuthenticatedUser: {0}", this.HttpContext.User.Identity.Name);
+            if(!this.HttpContext.User.Identity.IsAuthenticated)throw new UnauthorizedAccessException("Access denied");
             this.id = id;
             try
             {
@@ -194,7 +196,7 @@ namespace Stardust.Nexus.Web.Controllers
                         if (settings.Type == VariableTypes.ServiceHostEnvironmental)
                         {
                             var envKey = GetEnvironmentSubstitutionKey(settings);
-                            SetEnvironmentSubstitutionVariable( env, envKey, settings.Value, settings.IsSecure);
+                            SetEnvironmentSubstitutionVariable( env, envKey, settings.Value, settings.IsSecure,settings.Description);
                         }
                         break;
                     case VariableTypes.Service:
@@ -203,7 +205,7 @@ namespace Stardust.Nexus.Web.Controllers
                         if (settings.Type == VariableTypes.ServiceHostEnvironmental)
                         {
                             var envKey = GetEnvironmentSubstitutionKey(settings);
-                            SetEnvironmentSubstitutionVariable( env, envKey, settings.Value, settings.IsSecure);
+                            SetEnvironmentSubstitutionVariable( env, envKey, settings.Value, settings.IsSecure,settings.Description);
                         }
                         break;
                 }
@@ -227,7 +229,7 @@ namespace Stardust.Nexus.Web.Controllers
                     settings.ParentContainer,
                     settings.PropertyName,
                     settings.Type == VariableTypes.ServiceHostEnvironmental ? settings.ParentFormatString : settings.Value,
-                    settings.Type == VariableTypes.ServiceHostEnvironmental);
+                    settings.Type == VariableTypes.ServiceHostEnvironmental, settings.Description);
             }
             else
             {
@@ -285,13 +287,14 @@ namespace Stardust.Nexus.Web.Controllers
         }
 
 
-        private void SetEnvironmentSubstitutionVariable( IEnvironment env, string name, string value, bool isSecure)
+        private void SetEnvironmentSubstitutionVariable( IEnvironment env, string name, string value, bool isSecure, string description)
         {
             var item = env.SubstitutionParameters.SingleOrDefault(p => p.Name == name);
             if (item == null) environmentTasks.CreateSubstitutionParameter(env, name, value);
             else
             {
                 item.ItemValue = value;
+                item.Description = description;
                 environmentTasks.UpdateSubstitutionParameter(item);
             }
         }

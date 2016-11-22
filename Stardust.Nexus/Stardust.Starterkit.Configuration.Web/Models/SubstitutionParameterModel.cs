@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Management;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Web.Models
+namespace Stardust.Starterkit.Configuration.Web.Models
 {
     public class SubstitutionParameterModel
     {
@@ -81,5 +82,7 @@ namespace Stardust.Nexus.Web.Models
                 return "Common";
             }
         }
+
+        public string Description { get; set; }
     }
 }

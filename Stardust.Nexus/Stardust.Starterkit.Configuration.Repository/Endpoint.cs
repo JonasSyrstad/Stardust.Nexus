@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Xml;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class Endpoint
     {
@@ -181,7 +181,7 @@ namespace Stardust.Nexus.Repository
                                         .SubstitutionParameters.SingleOrDefault(
                                             sp => string.Equals(sp.Name, string.Format("{0}_{1}", ServiceDescription.Name + param.Name), StringComparison.OrdinalIgnoreCase));
                         if(fromServiceHost.IsSecure)
-                            return string.Format(param.Value, fromServiceHost.Value.Decrypt(KeyHelper.GetSecret(this.ServiceDescription.ConfigSet)));
+                            return string.Format(param.Value, fromServiceHost.Value.Decrypt(KeyHelper.SharedSecret));
                         return string.Format(param.Value, fromServiceHost.Value);
                     }
                     catch (Exception)

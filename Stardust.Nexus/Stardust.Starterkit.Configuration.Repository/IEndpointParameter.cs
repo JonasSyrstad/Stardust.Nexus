@@ -1,9 +1,9 @@
+using BrightstarDB.EntityFramework;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using BrightstarDB.EntityFramework;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Entity]
     public interface IEndpointParameter
@@ -12,6 +12,8 @@ namespace Stardust.Nexus.Repository
         string Id { get; }
           [RegularExpression(Constants.KeyValidator, ErrorMessage = "special characters are not  allowed.")]
         string Name { get; set; }
+
+        string Description { get; set; }
 
         IEndpoint Endpoint { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Repository;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Business
+namespace Stardust.Starterkit.Configuration.Business
 {
     public interface IConfigSetTask : IDisposable
     {
@@ -38,7 +38,7 @@ namespace Stardust.Nexus.Business
         
 
         
-        void CreateEndpointParameter(string item, string name, string itemValue, bool isSubstiturtionParameter);
+        void CreateEndpointParameter(string item, string name, string itemValue, bool isSubstiturtionParameter, string description);
         void DeleteEndpoint(IEndpoint endpoint);
 
         ConfigurationSettings InitializeDatacenter(string id, ConfigurationSettings settings);
@@ -65,5 +65,7 @@ namespace Stardust.Nexus.Business
         void DeleteConfigSet(IConfigSet cs);
 
         void DeleteServiceHost(IServiceHostSettings host);
+        void DeleteServiceHostParameter(IServiceHostParameter par);
+        void FixErrors(string name, string system);
     }
 }

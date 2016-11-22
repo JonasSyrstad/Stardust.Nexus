@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public static class ServiceDescriptionExtentions
     {
@@ -252,7 +252,7 @@ namespace Stardust.Nexus.Repository
             }
         }
 
-        public static void AddParameter(this IEndpoint endpoint, ConfigurationContext context, string parameterName, string parameterValue, bool isSubstitutionParameter)
+        public static void AddParameter(this IEndpoint endpoint, ConfigurationContext context, string parameterName, string parameterValue, bool isSubstitutionParameter,string description)
         {
             var parameter = context.EndpointParameters.Create();
             parameter.Name = parameterName;
@@ -261,6 +261,7 @@ namespace Stardust.Nexus.Repository
             parameter.ConfigurableForEachEnvironment = isSubstitutionParameter;
             parameter.IsPerService = isSubstitutionParameter;
             parameter.ItemValue = "{0}";
+            parameter.Description = description;
             endpoint.Parameters.Add(parameter);
             AddToChildren(endpoint.ServiceDescription, context, endpoint);
             if (!isSubstitutionParameter) return;
@@ -270,7 +271,8 @@ namespace Stardust.Nexus.Repository
                 var overrideProp = environment.SubstitutionParameters.SingleOrDefault(x => String.Equals(x.Name, addressOverride, StringComparison.OrdinalIgnoreCase));
                 if (overrideProp.IsNull())
                     overrideProp=environment.CreateSubstitutionParameters(context, addressOverride);
-                if(parameter.SubstitutionParameters!=null) parameter.SubstitutionParameters=new List<ISubstitutionParameter>();
+                overrideProp.Description = description;
+                if (parameter.SubstitutionParameters!=null) parameter.SubstitutionParameters=new List<ISubstitutionParameter>();
                 if(!parameter.SubstitutionParameters.Contains(overrideProp))
                     parameter.SubstitutionParameters.Add(overrideProp);
             }

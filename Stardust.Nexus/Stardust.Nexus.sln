@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Business", "Stardust.Starterkit.Configuration.Business\Stardust.Nexus.Business.csproj", "{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Starterkit.Configuration.Web", "Stardust.Starterkit.Configuration.Web\Stardust.Starterkit.Configuration.Web.csproj", "{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Repository", "Stardust.Starterkit.Configuration.Repository\Stardust.Nexus.Repository.csproj", "{4BF95275-C07A-4C62-AF87-185EAA89BF50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Starterkit.Configuration.Business", "Stardust.Starterkit.Configuration.Business\Stardust.Starterkit.Configuration.Business.csproj", "{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Starterkit.Configuration.Repository", "Stardust.Starterkit.Configuration.Repository\Stardust.Starterkit.Configuration.Repository.csproj", "{4BF95275-C07A-4C62-AF87-185EAA89BF50}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Starterkit.Configuration.Tests", "Stardust.Starterkit.Configuration.Tests\Stardust.Starterkit.Configuration.Tests.csproj", "{21191EEE-C16F-4CC8-89C0-A9ADEF11CC45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Web", "Stardust.Starterkit.Configuration.Web\Stardust.Nexus.Web.csproj", "{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Proxy", "Stardust.Starterkit.Proxy\Stardust.Nexus.Proxy.csproj", "{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Starterkit.Proxy", "Stardust.Starterkit.Proxy\Stardust.Starterkit.Proxy.csproj", "{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,6 +20,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.AzureDeployment|Any CPU.ActiveCfg = AzureDeployment|Any CPU
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.AzureDeployment|Any CPU.Build.0 = AzureDeployment|Any CPU
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}.AzureDeployment|Any CPU.ActiveCfg = AzureDeployment|Any CPU
 		{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}.AzureDeployment|Any CPU.Build.0 = AzureDeployment|Any CPU
 		{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,12 +44,6 @@ Global
 		{21191EEE-C16F-4CC8-89C0-A9ADEF11CC45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21191EEE-C16F-4CC8-89C0-A9ADEF11CC45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21191EEE-C16F-4CC8-89C0-A9ADEF11CC45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.AzureDeployment|Any CPU.ActiveCfg = AzureDeployment|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.AzureDeployment|Any CPU.Build.0 = AzureDeployment|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E6E90B8-E4E2-4DD7-B41A-411CBD2541F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}.AzureDeployment|Any CPU.ActiveCfg = AzureDeployment|Any CPU
 		{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}.AzureDeployment|Any CPU.Build.0 = AzureDeployment|Any CPU
 		{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

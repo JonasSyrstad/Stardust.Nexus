@@ -5,10 +5,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy.Controllers.api
+namespace Stardust.Starterkit.Proxy.Controllers.api
 {
     [RoutePrefix("js")]
     public class EnvironmentController : ConfigReaderControllerBase

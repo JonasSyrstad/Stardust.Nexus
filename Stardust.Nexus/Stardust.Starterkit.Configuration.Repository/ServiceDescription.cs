@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class ServiceDescription
     {

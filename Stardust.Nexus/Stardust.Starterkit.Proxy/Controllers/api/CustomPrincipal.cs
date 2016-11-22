@@ -1,6 +1,6 @@
 using System.Security.Principal;
 
-namespace Stardust.Nexus.Proxy.Controllers.api
+namespace Stardust.Starterkit.Proxy.Controllers.api
 {
     public class CustomPrincipal : IPrincipal
     {

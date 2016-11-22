@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public static class CloneEnvironmentExtentions
     {

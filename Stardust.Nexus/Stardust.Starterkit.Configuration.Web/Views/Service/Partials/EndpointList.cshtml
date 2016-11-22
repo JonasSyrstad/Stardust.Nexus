@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Stardust.Nexus.Repository.IEndpoint>
+﻿@model IEnumerable<Stardust.Starterkit.Configuration.Repository.IEndpoint>
 
 <p>
     @Html.ActionLink("Create New", "Create","Endpoint",new {id="new", command=ViewBag.ServiceId},null)
@@ -16,6 +16,7 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+
             </td>
             <td>
                 @Html.ActionLink("Details", "Details", "Endpoint", new { id = "edit", item = item.Id }, null) |

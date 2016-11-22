@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Stardust.Clusters;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Proxy.Controllers.api;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Controllers.api;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy.Controllers
+namespace Stardust.Starterkit.Proxy.Controllers
 {
     public class AuthController : Controller
     {

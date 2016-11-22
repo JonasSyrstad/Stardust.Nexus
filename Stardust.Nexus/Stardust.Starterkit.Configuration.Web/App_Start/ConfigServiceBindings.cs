@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Diagnostics;
 using Keen.Core;
+using Stardust.Core;
 using Stardust.Interstellar;
 using Stardust.Interstellar.Endpoints;
 using Stardust.Interstellar.Utilities;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Business.CahceManagement;
-using Stardust.Nexus.Repository;
 using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Business.CahceManagement;
+using Stardust.Starterkit.Configuration.Repository;
 using Environment = System.Environment;
 
-namespace Stardust.Nexus.Web
+namespace Stardust.Starterkit.Configuration.Web
 {
     public class ConfigServiceBindings : Blueprint<KeenLogger>
     {
@@ -24,7 +25,6 @@ namespace Stardust.Nexus.Web
             Resolver.Bind<ICacheManagementService>().To<CacheManagementService>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<NullCacheManagementWrapper>().SetTransientScope();
             Resolver.Bind<ICacheManagementWrapper>().To<AzureRedisFabricCacheManager>("Azure").SetTransientScope();
-            Configurator.Bind<ISettingsFacade>().To<SettingsFacade>().SetTransientScope();
         }
     }
 

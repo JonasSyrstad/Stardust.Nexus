@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using BrightstarDB.EntityFramework;
+using JetBrains.Annotations;
 using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Entity("Environment")]
     public interface IEnvironment
@@ -46,6 +47,8 @@ namespace Stardust.Nexus.Repository
 
         [DisplayName("Last updated")]
         DateTime LastPublish { get; set; }
+
+        int Version { get; set; }
 
         void SetReaderKey(string key);
 

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Starterkit.Configuration.Web.Models;
+using System;
 using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
-using Stardust.Nexus.Web.Models;
-using Stardust.Particles;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
     [Authorize]
     public class ParametersController : BaseController
@@ -32,6 +32,7 @@ namespace Stardust.Nexus.Web.Controllers
             ViewBag.Trail = parameter.GetTrail();
             if (!parameter.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             parameter.ItemValue = TrimParameter(model);
+            parameter.Description = model.Description;
             reader.UpdateEndpointParameter(parameter);
             return View(parameter);
         }
@@ -53,7 +54,7 @@ namespace Stardust.Nexus.Web.Controllers
         public ActionResult CreateSub(string id, string item, EndpointPropertyModel model)
         {
             var endpoint = reader.GetEndpoint(item);
-            reader.CreateEndpointParameter(item, model.Name, model.ItemValue,model.IsSubstiturtionParameter);
+            reader.CreateEndpointParameter(item, model.Name, model.ItemValue,model.IsSubstiturtionParameter, model.Description);
             return RedirectToAction("Details", "Endpoint", new { id = "edit", item = item });
         }
     }

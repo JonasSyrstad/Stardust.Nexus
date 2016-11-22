@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using BrightstarDB.EntityFramework;
 using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     [Entity("EnvironmentParameter")]
     public interface IEnvironmentParameter
@@ -12,6 +12,8 @@ namespace Stardust.Nexus.Repository
         string Id { get; }
         [RegularExpression(Constants.KeyValidator, ErrorMessage = "special characters are not  allowed.")]
         string Name { get; set; }
+
+        string Description { get; set; }
 
         string EnvironmentNameId { get; set; }
             

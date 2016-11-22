@@ -1,13 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Web;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using Microsoft.AspNet.SignalR.Client;
 using Stardust.Interstellar.Utilities;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.App_Start;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy.Controllers
+namespace Stardust.Starterkit.Proxy.Controllers
 {
     public class HomeController : Controller
     {
@@ -73,6 +79,10 @@ namespace Stardust.Nexus.Proxy.Controllers
             {
                 ViewBag.NotificationStatus = Startup.hubConnection.State.ToString();
             }
+            var assemblyDate = GetType().Assembly.Location.IsNullOrWhiteSpace()
+                ? DateTime.Now
+                : System.IO.File.GetLastWriteTime(GetType().Assembly.Location);
+            ViewBag.Version = $"{assemblyDate.Year}.{assemblyDate.Month}.{assemblyDate.DayOfYear}";
             return View();
         }
     }

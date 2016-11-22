@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Business
+namespace Stardust.Starterkit.Configuration.Business
 {
     public class UniqueIdGenerator : IDisposable
     {

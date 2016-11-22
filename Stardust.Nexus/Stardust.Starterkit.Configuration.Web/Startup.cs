@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Net;
+using GbSamples.OwinWinAuth;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Client;
 using Microsoft.Owin;
 using Owin;
-using Stardust.Nexus.Business.CahceManagement;
-using Stardust.Nexus.Web;
-using Stardust.Nexus.Web.Notification;
 using Stardust.Nucleus;
 using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business.CahceManagement;
+using Stardust.Starterkit.Configuration.Web.Notification;
 using Utilities = Stardust.Interstellar.Utilities.Utilities;
 
-[assembly: OwinStartup(typeof(Startup))]
-namespace Stardust.Nexus.Web
+[assembly: OwinStartupAttribute(typeof(Stardust.Starterkit.Configuration.Web.Startup))]
+namespace Stardust.Starterkit.Configuration.Web
 {
     public partial class Startup
     {

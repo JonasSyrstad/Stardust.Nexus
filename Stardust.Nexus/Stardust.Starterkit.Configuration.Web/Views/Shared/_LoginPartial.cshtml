@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@using Stardust.Nexus.Business
+@using Stardust.Starterkit.Configuration.Business
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))

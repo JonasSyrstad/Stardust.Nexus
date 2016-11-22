@@ -1,4 +1,4 @@
-﻿namespace Stardust.Nexus.Repository
+﻿namespace Stardust.Starterkit.Configuration.Repository
 {
     public interface IRepositoryFactory
     {

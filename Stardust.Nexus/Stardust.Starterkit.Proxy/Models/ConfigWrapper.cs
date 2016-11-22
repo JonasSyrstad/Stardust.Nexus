@@ -1,6 +1,7 @@
-﻿using Stardust.Interstellar.ConfigurationReader;
+﻿using System.Collections.Generic;
+using Stardust.Interstellar.ConfigurationReader;
 
-namespace Stardust.Nexus.Proxy.Models
+namespace Stardust.Starterkit.Proxy.Models
 {
     public class ConfigWrapper
     {
@@ -9,5 +10,12 @@ namespace Stardust.Nexus.Proxy.Models
         public ConfigurationSet Set { get; set; }
 
         public string Id { get; set; }
+    }
+
+    public class ConsolidatedConfigWrapperFile
+    {
+        public Dictionary<string, ConfigWrapper> ConfigWrappers { get; set; }
+
+        public Dictionary<string, User> Users { get; set; } 
     }
 }

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
 using System.Web.Mvc;
+using Stardust.Starterkit.Configuration.Web.Models;
+using System.Linq;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
-using Stardust.Nexus.Web.Models;
 using Stardust.Particles;
 using VDS.RDF.Query.Builder;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
     public class ServiceHostsController : BaseController
     {
@@ -103,12 +103,12 @@ namespace Stardust.Nexus.Web.Controllers
             if (!host.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             ViewBag.Id = host.Id;
             return View(new HostsModel
-                            {
-                                Id = host.Id,
-                                AwailableHosts = host.ConfigSet.ServiceHosts.Where(sh => sh.Id != host.Id).Where(sh => !host.DownstreamHosts.Select(h => h.Name).Contains(sh.Name)).ToList(),
-                                SelectedHost = ""
+                        {
+                            Id = host.Id,
+                            AwailableHosts = host.ConfigSet.ServiceHosts.Where(sh => sh.Id != host.Id).Where(sh => !host.DownstreamHosts.Select(h => h.Name).Contains(sh.Name)).ToList(),
+                            SelectedHost = ""
 
-                            });
+                        });
         }
 
         [HttpPost]
@@ -130,12 +130,12 @@ namespace Stardust.Nexus.Web.Controllers
             if (!host.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             ViewBag.Id = host.Id;
             return View(new HostsModel
-                            {
-                                Id = host.Id,
-                                AwailableHosts = host.ConfigSet.ServiceHosts.Where(sh => sh.Id != host.Id).Where(sh => !host.UpstreamHosts.Select(h => h.Name).Contains(sh.Name)).ToList(),
-                                SelectedHost = ""
+            {
+                Id = host.Id,
+                AwailableHosts = host.ConfigSet.ServiceHosts.Where(sh => sh.Id != host.Id).Where(sh => !host.UpstreamHosts.Select(h => h.Name).Contains(sh.Name)).ToList(),
+                SelectedHost = ""
 
-                            });
+            });
         }
 
         [HttpPost]
@@ -171,13 +171,13 @@ namespace Stardust.Nexus.Web.Controllers
             return RedirectToAction("Details","ConfigSet", new { name=name,system=system });
         }
     }
+}
 
-    public class HostsModel
-    {
-        public string Id { get; set; }
+public class HostsModel
+{
+    public string Id { get; set; }
 
-        public List<IServiceHostSettings> AwailableHosts { get; set; }
+    public List<IServiceHostSettings> AwailableHosts { get; set; }
 
-        public string SelectedHost { get; set; }
-    }
+    public string SelectedHost { get; set; }
 }

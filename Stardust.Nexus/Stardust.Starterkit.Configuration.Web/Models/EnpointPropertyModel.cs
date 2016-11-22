@@ -1,4 +1,4 @@
-﻿namespace Stardust.Nexus.Web.Models
+﻿namespace Stardust.Starterkit.Configuration.Web.Models
 {
     public class EndpointPropertyModel
     {
@@ -7,6 +7,8 @@
         public string ItemValue { get; set; }
 
         public bool IsSubstiturtionParameter { get; set; }
+
+        public string Description { get; set; }
 
     }
 }

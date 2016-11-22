@@ -5,7 +5,7 @@ using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Particles;
 using Stardust.Wormhole;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class Environment
     {
@@ -18,6 +18,7 @@ namespace Stardust.Nexus.Repository
         {
             return new EnvironmentConfig
             {
+                Version = $"{ConfigSet.Version}.{Version}",
                 EnvironmentName = Name,
                 Parameters = (from p in EnvironmentParameters select p.GetRawConfigData()).ToList(),
                 Cache = CacheType.Map().To<Interstellar.ConfigurationReader.CacheSettings>(),
@@ -44,12 +45,12 @@ namespace Stardust.Nexus.Repository
 
         public void SetReaderKey(string key)
         {
-            ReaderKey = key.Encrypt(KeyHelper.GetSecret(this.ConfigSet));
+            ReaderKey = key.Encrypt(KeyHelper.SharedSecret);
         }
 
         public string GetReaderKey()
         {
-            return ReaderKey.Decrypt(KeyHelper.GetSecret(this.ConfigSet));
+            return ReaderKey.Decrypt(KeyHelper.SharedSecret);
         }
 
         private string GetValue(string key)

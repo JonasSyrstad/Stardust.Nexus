@@ -1,4 +1,4 @@
-﻿@model Stardust.Nexus.Repository.ServiceHostParameter
+﻿@model Stardust.Starterkit.Configuration.Repository.ServiceHostParameter
 
 @{
     ViewBag.Title = "Details";
@@ -25,7 +25,13 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.IsEnvironmental, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -80,7 +86,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back ", "Details", "ServiceHosts", new { id = ViewBag.HostId }, null)
+    @Html.ActionLink("Back ", "Details", "ServiceHosts", null, null, "host." + Model.Id, new { id = ViewBag.HostId }, null)
 </div>
 
 @section Scripts {

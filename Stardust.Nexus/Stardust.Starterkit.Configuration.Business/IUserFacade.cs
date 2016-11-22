@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Stardust.Nexus.Repository;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Business
+namespace Stardust.Starterkit.Configuration.Business
 {
     public interface IUserFacade
     {

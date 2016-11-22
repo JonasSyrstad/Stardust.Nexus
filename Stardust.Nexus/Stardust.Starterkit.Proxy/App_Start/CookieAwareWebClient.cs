@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 
-namespace Stardust.Nexus.Proxy
+namespace Stardust.Starterkit.Configuration.Web
 {
     internal class CookieAwareWebClient : WebClient
     {

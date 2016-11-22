@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Stardust.Nexus.Repository.IEnvironment>
+﻿@model IEnumerable<Stardust.Starterkit.Configuration.Repository.IEnvironment>
 <div class="panel">
     <div class="panel panel-title" style="cursor: pointer" data-toggle="collapse" data-target="#env">&nbsp;<i class="glyphicon glyphicon-globe"></i> Environments</div>
     <div id="env" class="panel panel-body collapse">
@@ -24,6 +24,7 @@
             {
                 <tr>
                     <td>
+                        <a href="#env.@Html.Raw(item.Id)" name="#env.@Html.Raw(item.Id)"></a>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td class="hidden-xs hidden-sm">

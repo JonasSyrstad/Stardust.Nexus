@@ -4,7 +4,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Proxy
+namespace Stardust.Starterkit.Proxy
 {
     [HubName("notificationHub")]
     public class ConfigSetHub : Hub

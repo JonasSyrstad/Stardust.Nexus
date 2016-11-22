@@ -2,10 +2,10 @@
 using System.Linq;
 using System.Reflection;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
 using Stardust.Nucleus;
 using Stardust.Nucleus.TypeResolver;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
 using Xunit;
 
 namespace Stardust.Starterkit.Configuration.Tests

@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace Stardust.Nexus.Web
+namespace Stardust.Starterkit.Configuration.Web
 {
     public class BundleConfig
     {

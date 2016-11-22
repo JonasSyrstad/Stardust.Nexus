@@ -1,8 +1,8 @@
 ﻿using Stardust.Interstellar;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Repository;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Business.CahceManagement
+namespace Stardust.Starterkit.Configuration.Business.CahceManagement
 {
     /// <summary>
     /// Handles communication with the cache server in the client applications

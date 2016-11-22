@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
-using Stardust.Nexus.Web.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Starterkit.Configuration.Web.Models;
 using Stardust.Wormhole;
-using Environment = Stardust.Nexus.Repository.Environment;
+using Environment = Stardust.Starterkit.Configuration.Repository.Environment;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
     [Authorize]
     public class EnvironmentController : BaseController
@@ -204,6 +204,15 @@ namespace Stardust.Nexus.Web.Controllers
                 ViewBag.EnvironmentId = env.Id;
                 ViewBag.Trail = env.GetTrail();
                 reader.PushChange(env.ConfigSet.Id, env.Name);
+                
+                try
+                {
+                    RepositoryFactory.Backup();
+                }
+                catch (Exception ex)
+                {
+                    ex.Log();
+                }
                 return RedirectToAction("Details", "ConfigSet", new { name = env.ConfigSet.Name, system = env.ConfigSet.System });
             }
             catch (Exception ex)

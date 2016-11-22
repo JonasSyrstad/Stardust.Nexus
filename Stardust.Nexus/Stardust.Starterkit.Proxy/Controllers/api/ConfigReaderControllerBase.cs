@@ -8,10 +8,10 @@ using System.Web.Http;
 using System.Web.Security;
 using Stardust.Clusters;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Models;
 
-namespace Stardust.Nexus.Proxy.Controllers.api
+namespace Stardust.Starterkit.Proxy.Controllers.api
 {
     public class ConfigReaderControllerBase : ApiController
     {

@@ -10,13 +10,12 @@ using Microsoft.Owin;
 using Newtonsoft.Json;
 using Owin;
 using Stardust.Interstellar.Utilities;
-using Stardust.Nexus.Proxy;
-using Stardust.Nexus.Proxy.Models;
 using Stardust.Particles;
+using Stardust.Starterkit.Proxy.Models;
 
-[assembly: OwinStartup(typeof(Startup))]
+[assembly: OwinStartup(typeof(Stardust.Starterkit.Proxy.App_Start.Startup))]
 
-namespace Stardust.Nexus.Proxy
+namespace Stardust.Starterkit.Proxy.App_Start
 {
     public class Startup
     {

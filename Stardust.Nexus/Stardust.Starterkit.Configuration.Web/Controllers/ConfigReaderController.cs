@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using Newtonsoft.Json;
 using Stardust.Interstellar.ConfigurationReader;
-using Stardust.Nexus.Business;
 using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business;
+using Stardust.Starterkit.Configuration.Repository;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
 
 
@@ -38,13 +43,21 @@ namespace Stardust.Nexus.Web.Controllers
         [HttpGet]
         public HttpResponseMessage Get(string id, string env)
         {
+            ConfigurationSet data = null;
             try
             {
                 var environmentId = string.Format("{0}-{1}", id, env);
                 var environment = environmentReader.GetEnvironment(environmentId);
+                if (File.Exists(GetFilename(id, env, environment)))
+                {
+                    var stringData = File.ReadAllText(AppDomain.CurrentDomain.BaseDirectory.Replace("bin", "") + "\\App_data\\" + GetFilename(id, env, environment));
+                     data = JsonConvert.DeserializeObject<ConfigurationSet>(stringData);
 
-                ConfigurationSet data = null;
-                ConfigCacheItem cachedData;
+                    data.RequestedBy = User.Identity.Name;
+                    var r = Request.CreateResponse(HttpStatusCode.OK, data);
+                    r.Headers.CacheControl = new CacheControlHeaderValue { NoCache = true };
+                    return r;
+                }ConfigCacheItem cachedData;
                 if (Cache.TryGetValue(environmentId, out cachedData))
                 {
                     if (cachedData.ETag == environment.ETag)
@@ -65,6 +78,7 @@ namespace Stardust.Nexus.Web.Controllers
                         Cache.TryAdd(environmentId, new ConfigCacheItem { ETag = environment.ETag, ConfigSet = data });
                     }
                 }
+                File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory.Replace("bin", "") + "\\App_data\\" + GetFilename(id, env, environment),JsonConvert.SerializeObject(data));
                 data.RequestedBy = User.Identity.Name;
                 var result = Request.CreateResponse(HttpStatusCode.OK, data);
                 result.Headers.CacheControl = new CacheControlHeaderValue { NoCache = true };
@@ -78,6 +92,53 @@ namespace Stardust.Nexus.Web.Controllers
 
         }
 
+        private static string GetFilename(string id, string env, IEnvironment environment)
+        {
+            return string.Format("{0}{1}{2}.json", id, env, environment.ETag);
+        }
+    }
 
+    internal class ConfigCacheItem
+    {
+        public string ETag { get; set; }
+
+        public ConfigurationSet ConfigSet { get; set; }
+    }
+
+    [Authorize]
+    public class UserTokenController : ApiController
+    {
+        private IConfigSetTask reader;
+
+        private IUserFacade userFacade;
+
+        public UserTokenController(IConfigSetTask reader, IUserFacade userFacade)
+        {
+            this.reader = reader;
+            this.userFacade = userFacade;
+        }
+        [HttpGet]
+        public HttpResponseMessage GetUser(string id)
+        {
+            try
+            {
+                var user = userFacade.GetUser(id);
+                return Request.CreateResponse(user != null ? new
+                                                                 {
+                                                                     user.NameId,
+                                                                     user.AccessToken,
+                                                                     ConfigSets = user.AdministratorType == AdministratorTypes.SystemAdmin ? reader.GetAllConfigSetNames() : user.ConfigSet.Select(c => c.Id).ToList()
+                                                                 } : CreateDeletedResponse(id));
+            }
+            catch (NullReferenceException)
+            {
+                return Request.CreateResponse(CreateDeletedResponse(id));
+            }
+        }
+
+        private static object CreateDeletedResponse(string id)
+        {
+            return new { NameId = id, AccessToken = "deleted", ConfigSets = new List<string>() };
+        }
     }
 }

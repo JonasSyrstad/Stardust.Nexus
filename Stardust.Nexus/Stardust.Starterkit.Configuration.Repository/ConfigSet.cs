@@ -4,7 +4,7 @@ using System.Linq;
 using Stardust.Interstellar.ConfigurationReader;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Repository
+namespace Stardust.Starterkit.Configuration.Repository
 {
     public partial class ConfigSet
     {
@@ -20,6 +20,7 @@ namespace Stardust.Nexus.Repository
             return new ConfigurationSet
             {
                 Created = Created,
+
                 LastUpdated = LastUpdate,
                 Environments = GetEnvironmentConfigs(environment),
                 SetName = Id,
@@ -29,7 +30,8 @@ namespace Stardust.Nexus.Repository
                 ReaderKey = ReaderKey,
                 AllowMasterKeyAccess = AllowAccessWithRootKey,
                 AllowUserToken = AllowAccessWithUserTokens,
-                ETag = env.ETag.ContainsCharacters() ? env.ETag : DateTimeOffset.UtcNow.Ticks.ToString()
+                ETag = env.ETag.ContainsCharacters() ? env.ETag : DateTimeOffset.UtcNow.Ticks.ToString(),
+                Version = $"{env.ConfigSet.Version}"
             };
         }
 
@@ -42,12 +44,12 @@ namespace Stardust.Nexus.Repository
 
         public void SetReaderKey(string key)
         {
-            ReaderKey = key.Encrypt(KeyHelper.GetSecret(this));
+            ReaderKey = key.Encrypt(KeyHelper.SharedSecret);
         }
 
         public string GetReaderKey()
         {
-            return ReaderKey.Decrypt(KeyHelper.GetSecret(this));
+            return ReaderKey.Decrypt(KeyHelper.SharedSecret);
         }
     }
 }

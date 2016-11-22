@@ -1,4 +1,4 @@
-namespace Stardust.Nexus.Web.Models
+namespace Stardust.Starterkit.Configuration.Web.Models
 {
     public enum VariableTypes
     {

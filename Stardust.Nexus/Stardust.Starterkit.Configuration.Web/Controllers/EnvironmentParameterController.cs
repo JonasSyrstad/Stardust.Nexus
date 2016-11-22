@@ -1,13 +1,13 @@
 ﻿using System;
 using System.IO;
+using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Business;
 using System.Web.Mvc;
 using Stardust.Interstellar;
-using Stardust.Nexus.Business;
-using Stardust.Nexus.Repository;
-using Stardust.Nexus.Web.Models;
-using Stardust.Particles;
+using Stardust.Starterkit.Configuration.Repository;
+using Stardust.Starterkit.Configuration.Web.Models;
 
-namespace Stardust.Nexus.Web.Controllers
+namespace Stardust.Starterkit.Configuration.Web.Controllers
 {
     [Authorize]
     public class EnvironmentParameterController : BaseController
@@ -21,7 +21,7 @@ namespace Stardust.Nexus.Web.Controllers
         }
         public ActionResult EditSub(string id, string item)
         {
-            var subPar = reader.GetSubstitutionParameter(item);
+            var subPar = reader.GetSubstitutionParameter(Server.UrlDecode(item));
             ViewBag.Trail = subPar.GetTrail();
             if (!subPar.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             ViewBag.Id = subPar.Environment.Id;
@@ -31,10 +31,11 @@ namespace Stardust.Nexus.Web.Controllers
         [HttpPost]
         public ActionResult EditSub(string id, string item, SubstitutionParameter model)
         {
-            var subPar = reader.GetSubstitutionParameter(item);
+            var subPar = reader.GetSubstitutionParameter(Server.UrlDecode(item));
             subPar.IsSecure = model.IsSecure;   
             subPar.ItemValue = model.ItemValue.IsInstance() ? model.ItemValue.TrimEnd() : null;
-            if (subPar.IsSecure && subPar.ItemValue.ContainsCharacters()) subPar.ItemValue = subPar.ItemValue.Encrypt(KeyHelper.GetSecret(subPar.Environment.ConfigSet));
+            subPar.Description = model.Description;
+            if (subPar.IsSecure && subPar.ItemValue.ContainsCharacters()) subPar.ItemValue = subPar.ItemValue.Encrypt(KeyHelper.SharedSecret);
             if (!subPar.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             reader.UpdateSubstitutionParameter(subPar);
             return RedirectToAction("Details", "Environment", new { id = "edit", item = subPar.Environment.Id });
@@ -45,7 +46,7 @@ namespace Stardust.Nexus.Web.Controllers
 
         public ActionResult DeleteSub(string id, string env, string sub)
         {
-            var subPar = reader.GetSubstitutionParameter(sub);
+            var subPar = reader.GetSubstitutionParameter(Server.UrlDecode(sub));
             ViewBag.Trail = subPar.GetTrail();
             return View(subPar);
         }
@@ -53,9 +54,9 @@ namespace Stardust.Nexus.Web.Controllers
         [HttpPost]
         public ActionResult DeleteSub(string id, string env, string sub,SubstitutionParameter model)
         {
-            var subParam = reader.GetSubstitutionParameter(sub);
+            var subParam = reader.GetSubstitutionParameter(Server.UrlDecode(sub));
             if (subParam.Id != sub) throw new InvalidDataException("Substitution parameters don't match");
-            reader.DeleteSubstitutionParameter(env,sub);
+            reader.DeleteSubstitutionParameter(env, Server.UrlDecode(sub));
             return RedirectToAction("Details", "Environment", new { id = "edit", item = env });
         }
 
@@ -97,6 +98,7 @@ namespace Stardust.Nexus.Web.Controllers
             {
                 par.Name = model.Name;
             }
+            par.Description = model.Description;
             if (!par.UserHasAccessTo()) throw new UnauthorizedAccessException("Access denied to configset");
             par.IsSecureString = model.IsSecureString;
             if (model.ItemValue != par.ItemValue)

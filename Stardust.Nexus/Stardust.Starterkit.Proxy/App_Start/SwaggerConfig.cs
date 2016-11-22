@@ -1,13 +1,19 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.ServiceModel;
 using System.Web.Http;
-using Stardust.Nexus.Proxy;
+using System.Web.Http.Description;
+using System.Xml;
+using Stardust.Interstellar.ConfigurationReader;
+using Stardust.Particles;
+using WebActivatorEx;
+using Stardust.Starterkit.Proxy;
 using Swashbuckle.Application;
 using Swashbuckle.Swagger;
-using WebActivatorEx;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
-namespace Stardust.Nexus.Proxy
+namespace Stardust.Starterkit.Proxy
 {
     public class SwaggerConfig
     {
@@ -40,6 +46,16 @@ namespace Stardust.Nexus.Proxy
                     {
 
                     });
+        }
+    }
+
+    public class TokeAuthFilter : IOperationFilter
+    {
+        public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
+        {
+            if (operation.security == null) operation.security = new List<IDictionary<string, IEnumerable<string>>>();
+            operation.security.Add(new Dictionary<string, IEnumerable<string>> { { "token", new List<string> {  } } });
+            operation.security.Add(new Dictionary<string, IEnumerable<string>> { { "key", new List<string> {  } } });
         }
     }
 }

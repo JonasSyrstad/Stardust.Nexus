@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using Stardust.Interstellar.Utilities;
 using Stardust.Particles;
 
-namespace Stardust.Nexus.Proxy.Models
+namespace Stardust.Starterkit.Proxy.Models
 {
     public static class UserValidator
     {
