@@ -5,7 +5,7 @@ using Stardust.Particles;
 
 namespace Stardust.Nexus.Proxy
 {
-    public class AuthAttribute : AuthorizeAttribute
+    public class AuthAttribute : AuthorizeAttribute 
     {
         /// <summary>
         /// Determines whether client is authorized to connect to <see cref="T:Microsoft.AspNet.SignalR.Hubs.IHub"/>.
