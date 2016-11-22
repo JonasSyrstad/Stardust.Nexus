@@ -32,7 +32,7 @@ namespace Stardust.Nexus.Web
                             AuthenticationFailed = context =>
                             {
                                 context.HandleResponse();
-                                context.Response.Redirect("/Error?message=" + context.Exception.Message);
+                                context.Response.Redirect("~/Error?message=" + context.Exception.Message);
                                 return Task.FromResult(0);
                             }
                         }

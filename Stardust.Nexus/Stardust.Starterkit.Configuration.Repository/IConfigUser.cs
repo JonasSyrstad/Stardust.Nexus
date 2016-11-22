@@ -12,6 +12,8 @@ namespace Stardust.Nexus.Repository
         string Id { get; }
 
         string NameId { get; set; }
+        
+        string Email { get; set; }       
 
         [InverseProperty("Administrators")]
         ICollection<IConfigSet> ConfigSet { get; set; }

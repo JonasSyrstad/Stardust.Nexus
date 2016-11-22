@@ -56,8 +56,8 @@
       <HintPath>..\packages\dotNetRDF.1.0.9.3683\lib\net40\dotNetRDF.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Excel.4.5">
-      <HintPath>..\packages\Stardust.2.1.1.148\lib\net45\Excel.4.5.dll</HintPath>
+    <Reference Include="Excel.4.5, Version=2.1.0.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.2.1.1.157\lib\net45\Excel.4.5.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="GbSamples.OwinWinAuth, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -184,12 +184,12 @@
       <HintPath>..\packages\BrightstarDBLibs.1.13.0\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Stardust">
-      <HintPath>..\packages\Stardust.2.1.1.148\lib\net45\Stardust.dll</HintPath>
+    <Reference Include="Stardust, Version=2.1.1.156, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.2.1.1.157\lib\net45\Stardust.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Stardust.Core.Service.Web">
-      <HintPath>..\packages\Stardust.Core.Service.Web.2.0.1.224\lib\net45\Stardust.Core.Service.Web.dll</HintPath>
+    <Reference Include="Stardust.Core.Service.Web, Version=2.0.1.233, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stardust.Core.Service.Web.2.0.1.233\lib\net45\Stardust.Core.Service.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Stardust.Interstellar.Rest">
@@ -344,6 +344,7 @@
     <Compile Include="Controllers\ConfigSetController.cs" />
     <Compile Include="Controllers\EndpointController.cs" />
     <Compile Include="Controllers\EnvironmentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FederationMeta.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MigrationController.cs" />
@@ -524,6 +525,7 @@
     <Content Include="Views\ConfigSet\ReaderKey.cshtml" />
     <Content Include="Views\Migration\Index.cshtml" />
     <Content Include="Views\ConfigSet\Delete.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
     <None Include="Views\Registration\TryAddService.cshtml" />
     <Content Include="Views\Service\Delete.cshtml" />
     <Content Include="Views\Shared\BreadCrumb.cshtml" />

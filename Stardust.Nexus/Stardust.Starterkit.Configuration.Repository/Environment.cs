@@ -52,6 +52,11 @@ namespace Stardust.Nexus.Repository
             return ReaderKey.Decrypt(KeyHelper.GetSecret(this.ConfigSet));
         }
 
+        public IApiKeyContainer GetApiKeys(string serviceHostName)
+        {
+            throw new NotImplementedException();
+        }
+
         private string GetValue(string key)
         {
             return SubstitutionParameters.Single(x => string.Equals(x.Name, key, StringComparison.OrdinalIgnoreCase)).Value;

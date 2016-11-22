@@ -37,13 +37,11 @@ namespace Stardust.Nexus.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-
         protected void Application_Error()
         {
             var ec = Server.GetLastError();
             ec.Log();
+            HttpContext.Current.Response.Redirect("~/Error?message=" + Server.UrlEncode(ec.Message));
         }
     }
-
-
 }

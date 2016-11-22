@@ -4,6 +4,7 @@ using Stardust.Core.Security;
 using Stardust.Nexus.Business.CahceManagement;
 using Stardust.Nexus.Repository;
 using Stardust.Particles;
+using Stardust.Particles.Validator;
 
 namespace Stardust.Nexus.Business
 {
@@ -13,7 +14,7 @@ namespace Stardust.Nexus.Business
 
         private ConfigurationContext Repository;
 
-        public UserFacade(IRepositoryFactory repository,ICacheManagementService cacheManagement)
+        public UserFacade(IRepositoryFactory repository, ICacheManagementService cacheManagement)
         {
             this.cacheManagement = cacheManagement;
             Repository = repository.GetRepository();
@@ -50,6 +51,9 @@ namespace Stardust.Nexus.Business
             var user = Repository.ConfigUsers.Create();
             user.FirstName = newUser.FirstName;
             user.LastName = newUser.LastName;
+            if (newUser.NameId.IsEmail()) user.Email = newUser.NameId;
+            else
+                user.Email = newUser.Email;
             user.NameId = newUser.NameId;
             user.AdministratorType = newUser.AdministratorType;
             user.SetAccessToken(UniqueIdGenerator.CreateNewId(20).Encrypt(KeySalt));
@@ -68,10 +72,13 @@ namespace Stardust.Nexus.Business
         {
             var user = GetUser(model.NameId);
             user.FirstName = model.FirstName;
+            if (model.NameId.IsEmail()) user.Email = model.NameId;
+            else
+                user.Email = model.Email;
             user.LastName = model.LastName;
             if (!user.NameId.ToLower().Equals(ConfigReaderFactory.CurrentUser.NameId.ToLower()))
                 user.AdministratorType = model.AdministratorType;
-            if(user.AccessToken.IsNullOrWhiteSpace())
+            if (user.AccessToken.IsNullOrWhiteSpace())
                 user.SetAccessToken(UniqueIdGenerator.CreateNewId(20).Encrypt(KeySalt));
             cacheManagement.NotifyUserChange(model.NameId.ToLower());
             Repository.SaveChanges();
@@ -83,15 +90,15 @@ namespace Stardust.Nexus.Business
             IConfigUser user;
             if (Repository.ConfigUsers.Count() == 0)
             {
-                 user = Repository.ConfigUsers.Create();
+                user = Repository.ConfigUsers.Create();
                 user.FirstName = "";
                 user.LastName = "";
                 user.NameId = id;
-                user.AdministratorType=AdministratorTypes.SystemAdmin;
+                user.AdministratorType = AdministratorTypes.SystemAdmin;
                 user.SetAccessToken(UniqueIdGenerator.CreateNewId(20).Encrypt(KeySalt));
                 Repository.SaveChanges();
             }
-            user= (from u in Repository.ConfigUsers
+            user = (from u in Repository.ConfigUsers
                     where u.NameId.ToLower().Equals(id.ToLower())
                     select u).Single();
             if (user.AccessToken.IsNullOrWhiteSpace())

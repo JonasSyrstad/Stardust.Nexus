@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Configuration;
 using BrightstarDB.EntityFramework;
+using Stardust.Core.Security;
 using Stardust.Interstellar.ConfigurationReader;
+using Stardust.Particles;
 
 namespace Stardust.Nexus.Repository
 {
@@ -50,6 +53,12 @@ namespace Stardust.Nexus.Repository
         void SetReaderKey(string key);
 
         string GetReaderKey();
+
+        [InverseProperty("Environment")]
+        [PropertyType("Relative")]
+        ICollection<IApiKeyContainer> ApiKeys { get; set; }
+
+        IApiKeyContainer GetApiKeys(string serviceHostName);
     }
 
     [Entity("CacheSettings")]
@@ -77,5 +86,47 @@ namespace Stardust.Nexus.Repository
 
         string ProtectionLevel { get; set; }
 
+        
+
+    }
+
+    [Entity("ApiKeyContainer")]
+    public interface IApiKeyContainer
+    {
+        string Id { get; }
+
+        IServiceHostSettings ServiceHost { get; set; }
+
+        IEnvironment Environment { get; set; }
+
+        [PropertyType("Relative")]
+        [InverseProperty("Container")]
+        ICollection<IApiKey> Keys { get; set; }
+    }
+
+    [Entity("ApiKey")]
+    public interface IApiKey
+    {
+        string Id { get; }
+
+        string UserName { get; set; }
+
+        string Key { get; set; }
+
+        IApiKeyContainer Container { get; set; }
+
+        DateTime ExpiryDate { get; set; }
+    }
+
+    public static class ApiKeyHelper
+    {
+        public static string CreateApiKey(this IApiKey key, string username, int validity=1)
+        {
+            var apiKey = $"{{{Guid.NewGuid().ToString()}}}";
+            key.UserName = username;
+            key.Key = apiKey.Encrypt(new EncryptionKeyContainer(key.Container.Environment.GetReaderKey()));
+            key.ExpiryDate = DateTime.UtcNow.AddYears(validity);
+            return apiKey;
+        }
     }
 }

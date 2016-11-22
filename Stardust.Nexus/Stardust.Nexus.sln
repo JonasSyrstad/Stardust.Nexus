@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Business", "Stardust.Starterkit.Configuration.Business\Stardust.Nexus.Business.csproj", "{A0BAE4D7-763C-44BF-82FD-31DB0DFDD881}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Proxy", "Stardust.Starterkit.Proxy\Stardust.Nexus.Proxy.csproj", "{CF81AA11-87B2-4A0D-B422-B13DFCAC1AB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Management.Client", "Stardust.Nexus.Management.Client\Stardust.Nexus.Management.Client.csproj", "{858C62C2-7ACD-4CA7-BBFA-08A2DD2D537E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stardust.Nexus.Realtime", "Stardust.Nexus.Realtime\Stardust.Nexus.Realtime.csproj", "{A05064DB-1FD5-41CC-83B9-087F253F7C45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,12 @@ Global
 		{858C62C2-7ACD-4CA7-BBFA-08A2DD2D537E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{858C62C2-7ACD-4CA7-BBFA-08A2DD2D537E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{858C62C2-7ACD-4CA7-BBFA-08A2DD2D537E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.AzureDeployment|Any CPU.ActiveCfg = Release|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.AzureDeployment|Any CPU.Build.0 = Release|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A05064DB-1FD5-41CC-83B9-087F253F7C45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
